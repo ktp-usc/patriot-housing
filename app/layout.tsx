@@ -3,7 +3,7 @@ import "./globals.css";
 import React from "react";
 
 export const metadata: Metadata = {
-    title: "Future KTP Web App",
+    title: "Patriot Housing",
     description: "KTP SP26"
 };
 
