@@ -1,40 +1,22 @@
 const volunteerWays = [
 	{
-		title: "Build & Repair Team",
+		title: "Outreach events",
 		description:
-			"Help with light construction, painting, and home repair projects for families and veterans in need.",
-		commitment: "Weekday and Saturday shifts",
+			"Help with light construction, painting, and home repair projects for veterans in need.",
+		commitment: "Weekday shifts",
 	},
 	{
-		title: "Community Outreach",
+		title: "Outreach events",
 		description:
-			"Represent Patriot Housing at local events, share resources, and connect neighbors to housing support.",
-		commitment: "Flexible monthly events",
+			"Represent Patriot Housing at local events and connect veterans to housing support.",
+		commitment: "Weekly shifts",
 	},
 	{
-		title: "Office & Admin Support",
+		title: "Office support",
 		description:
-			"Assist with scheduling, data entry, and volunteer coordination to keep programs running smoothly.",
-		commitment: "2-4 hours per week",
-	},
-	{
-		title: "Donation & Supply Drive",
-		description:
-			"Organize and sort donated household items, furniture, and welcome kits for newly housed residents.",
-		commitment: "Seasonal and ongoing opportunities",
-	},
-	{
-		title: "Mentorship & Move-In Support",
-		description:
-			"Welcome families into stable housing by helping with move-ins and providing basic neighborhood orientation.",
-		commitment: "As-needed weekend support",
-	},
-	{
-		title: "Professional Skills Volunteer",
-		description:
-			"Contribute legal, financial, counseling, or job-readiness expertise to empower long-term stability.",
-		commitment: "By appointment",
-	},
+			"Assist with administrative tasks, data entry, and volunteer coordination to ensure as many veterans as possible are cared for.",
+		commitment: "Flexible shifts",
+	}
 ];
 
 export default function VolunteeringPage() {
