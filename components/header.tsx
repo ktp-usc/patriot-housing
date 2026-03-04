@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Header() {
   return (
     <header className="border-b border-slate-200 bg-white">
@@ -5,13 +7,13 @@ export default function Header() {
         <span className="text-base font-semibold text-slate-900">
           Patriot Housing
         </span>
-        <nav className="text-sm text-slate-600">
-          <div className="mx-auto">
-            <link href="page.tsx">Home</link>
-            <link href="@/newsletter/newsletter.tsx">Newsletter</link>
-            <link href="@/donate/donate.tsx">Donate</link>
-            <link href="@/volunteer/volunteer.tsx">Volunteer</link>
-            <link href="@/resources/resources.tsx">Resources</link>
+        <nav className="text-sm font-semibold text-slate-600"> **//TODO: increase margin and update current CSS**
+          <div className="mx-auto flex w-full max-w-6xl flex-col gap-3 px-6 py-4 md:flex-row md:items-center md:justify-between md:px-10">
+            <Link href="/">Home</Link>
+            <Link href="/newsletter">Newsletter</Link>
+            <Link href="/donate">Donate</Link>
+            <Link href="/volunteer">Volunteer</Link>
+            <Link href="/resources">Resources</Link>
           </div>
         </nav>
       </div>
