@@ -8,12 +8,12 @@ export default function Header() {
           Patriot Housing
         </span>
         <nav className="text-md font-bold text-slate-600">
-          <div className="mx-auto flex flex-col gap-4 px-6 py-4 md:flex-row md:items-center md:justify-between md:px-10">
-            <Link href="/" className="hover:underline hover:decoration-red-600 underline-offset-5">Home</Link>
-            <Link href="/newsletter" className="hover:underline hover:decoration-red-600 underline-offset-5">Newsletter</Link>
-            <Link href="/donate" className="hover:underline hover:decoration-red-600 underline-offset-5">Donate</Link>
-            <Link href="/volunteer" className="hover:underline hover:decoration-red-600 underline-offset-5">Volunteer</Link>
-            <Link href="/resources" className="hover:underline hover:decoration-red-600 underline-offset-5">Resources</Link>
+          <div className="mx-auto flex flex-col gap-5 px-6 py-4 md:flex-row md:items-center md:justify-between md:px-10">
+            <Link href="/" className="px-2 hover:underline hover:decoration-red-600 hover:underline-offset-6 decoration-3">Home</Link>
+            <Link href="/newsletter" className="px-2 hover:underline hover:decoration-red-600 hover:underline-offset-6 decoration-3">Newsletter</Link>
+            <Link href="/donate" className="px-2 hover:underline hover:decoration-red-600 hover:underline-offset-6 decoration-3">Donate</Link>
+            <Link href="/volunteer" className="px-2 hover:underline hover:decoration-red-600 hover:underline-offset-6 decoration-3">Volunteer</Link>
+            <Link href="/resources" className="px-2 hover:underline hover:decoration-red-600 hover:underline-offset-6 decoration-3">Resources</Link>
           </div>
         </nav>
       </div>
