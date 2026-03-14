@@ -1,5 +1,8 @@
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import Image from "next/image";
+import pic1 from "@/images/pic1.png";
+import pic2 from "@/images/pic2.jpg"
 
 export default function Home() {
   return (
@@ -15,6 +18,28 @@ export default function Home() {
             Insert Description Here
           </p>
         </section>
+
+        <div>
+          <div style={{ backgroundColor: "white", height: "180vh" }}>
+            <Image src={pic1} alt="Stock photo 1" width={ 1260 } height={ 100 }/>
+
+          </div>
+          <div
+              style={{ backgroundColor: "white", height: "250vh" }}>
+            <Image src={pic2} alt="Stock photo 2" width={ 500 } height={ 100 }/>
+
+          </div>
+
+          <div
+              style={{ backgroundColor: "#0A3161", height: "50vh" }}>
+          </div>
+          <div
+              style={{ backgroundColor: "white", height: "150vh" }}>
+          </div>
+          <div
+              style={{ backgroundColor: "#0A3161", height: "70vh" }}>
+          </div>
+        </div>
 
         <section className="mt-8 grid gap-6 md:grid-cols-3">
           <div className="rounded-xl border border-slate-200 bg-slate-50 p-6">
