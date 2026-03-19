@@ -13,7 +13,7 @@ export default function Home() {
       <main className="mx-auto w-full max-w-7xl px-6 py-10 md:px-10 md:py-15">
 
         <section className="rounded-2xl border border-slate-200 bg-white p-8 md:p-12"
-          style = {{backgroundImage: `url(${pic3.src})`}}>  {/* TODO: Background image go here*/}
+          style = {{backgroundImage: `url(${pic3.src})`}}>  {/* Background image go here*/}
           <h1 className="mt-3 text-3xl text-white font-bold tracking-tight md:text-5xl">
             Patriot Housing
           </h1>
@@ -23,13 +23,14 @@ export default function Home() {
 
         </section>
 
+        {/*Logos from template*/}
         <div
             style={{ backgroundColor: "lightgray", height: "10vh" }}>
         </div>
 
         <div>
           <div className = "grid grid-cols-1 md:grid-cols-2 gap-4"
-              style={{ backgroundColor: "white", height: "180vh"}}>
+              style={{ backgroundColor: "white", height: "60vh"}}>
             <Image src={pic1} alt="Stock photo 1" width={ 1260 } height={ 100 }/>
             <section>
               <h1>Housing Instability Among Veterans</h1>
@@ -38,20 +39,29 @@ export default function Home() {
           </div>
 
           <div
-              style={{ backgroundColor: "lightgray", height: "100vh" }}>
+              style={{ backgroundColor: "lightgray", height: "60vh" }}>
+            <h1>
+              Ways to get Involved
+            </h1>
           </div>
 
           <div
-              style={{ backgroundColor: "white", height: "250vh" }}>
+              style={{ backgroundColor: "white", height: "60vh" }}>
             <Image src={pic2} alt="Stock photo 2" width={ 500 } height={ 100 }/>
+            <h1>
+              Stories of Impact
+            </h1>
 
           </div>
 
           <div
               style={{ backgroundColor: "#0A3161", height: "50vh" }}>
+            <h1 className = "text-white">
+              You can change a veterans life today
+            </h1>
           </div>
           <div
-              style={{ backgroundColor: "white", height: "150vh" }}>
+              style={{ backgroundColor: "white", height: "50vh" }}>
           </div>
           <div
               style={{ backgroundColor: "#0A3161", height: "70vh" }}>
