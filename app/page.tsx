@@ -1,93 +1,350 @@
-export default function Home() {
+"use client";
+
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import {
+  ArrowLeft,
+  ArrowRight,
+  BookOpen,
+  Briefcase,
+  ExternalLink,
+  Facebook,
+  Heart,
+  Home,
+  House,
+  Hospital,
+  Instagram,
+  Linkedin,
+  Mail,
+  Menu,
+  Phone,
+  Shield,
+  Twitter,
+  Users,
+  X,
+  Youtube,
+} from "lucide-react";
+
+const navigationLinks = [
+  { name: "Home", href: "#", icon: Home },
+  { name: "Volunteering", href: "#volunteering", icon: Users },
+  { name: "Donate", href: "#donate", icon: Heart },
+  { name: "Newsletter", href: "#newsletter", icon: Mail },
+  { name: "Resources", href: "#resources", icon: BookOpen },
+  { name: "Contact", href: "#contact", icon: Phone },
+];
+
+const slideImages = [
+  {
+    url: "https://images.unsplash.com/photo-1766764925755-2fa39f0d0556?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhbWVyaWNhbiUyMGZsYWclMjBwYXRyaW90aWMlMjBob21lfGVufDF8fHx8MTc3MjY5MDQxOXww&ixlib=rb-4.1.0&q=80&w=1080",
+    caption: "Honoring Those Who Served",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1697618990624-255318316bea?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx2ZXRlcmFuJTIwZmFtaWx5JTIwaGFwcHklMjBob3VzZXxlbnwxfHx8fDE3NzI2OTA0MTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    caption: "Building Homes, Creating Futures",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1766503493494-2f05e7eaf454?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtaWxpdGFyeSUyMHNlcnZpY2UlMjBtZW1iZXJzJTIwY29tbXVuaXR5fGVufDF8fHx8MTc3MjY5MDQxOXww&ixlib=rb-4.1.0&q=80&w=1080",
+    caption: "Supporting Our Heroes",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1715231667593-5a32b2828546?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjBidWlsZGluZyUyMG5ldyUyMGhvbWV8ZW58MXx8fHwxNzcyNjkwNDIwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+    caption: "Together We Build",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1495467270795-cf51cd29f1b4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhbWVyaWNhbiUyMHZldGVyYW4lMjBzYWx1dGUlMjBmbGFnfGVufDF8fHx8MTc3MjY5MDQyMHww&ixlib=rb-4.1.0&q=80&w=1080",
+    caption: "Serving Those Who Served",
+  },
+];
+
+const veteranResources = [
+  {
+    category: "Housing Assistance",
+    icon: House,
+    resources: [
+      { name: "VA Home Loan Programs", url: "#", description: "Zero down payment home loans" },
+      { name: "Emergency Housing Assistance", url: "#", description: "Immediate support for veterans in crisis" },
+      { name: "Home Adaptation Grants", url: "#", description: "Accessibility modification support" },
+    ],
+  },
+  {
+    category: "Employment & Career",
+    icon: Briefcase,
+    resources: [
+      { name: "Veterans Job Bank", url: "#", description: "Job listings focused on veterans" },
+      { name: "Career Counseling", url: "#", description: "Guidance for military-to-civilian transition" },
+      { name: "Vocational Rehabilitation", url: "#", description: "Training and employment services" },
+    ],
+  },
+  {
+    category: "Healthcare Services",
+    icon: Hospital,
+    resources: [
+      { name: "VA Healthcare Enrollment", url: "#", description: "Comprehensive health coverage" },
+      { name: "Mental Health Support", url: "#", description: "PTSD counseling and wellness support" },
+      { name: "Veterans Crisis Line", url: "#", description: "Call 988, then press 1" },
+    ],
+  },
+];
+
+const socialMedia = [
+  { name: "Facebook", icon: Facebook, url: "#" },
+  { name: "Twitter", icon: Twitter, url: "#" },
+  { name: "Instagram", icon: Instagram, url: "#" },
+  { name: "LinkedIn", icon: Linkedin, url: "#" },
+  { name: "YouTube", icon: Youtube, url: "#" },
+];
+
+export default function HomePage() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      setCurrentSlide((previous) => (previous + 1) % slideImages.length);
+    }, 4000);
+
+    return () => window.clearInterval(intervalId);
+  }, []);
+
+  const goToPreviousSlide = () => {
+    setCurrentSlide((previous) => (previous - 1 + slideImages.length) % slideImages.length);
+  };
+
+  const goToNextSlide = () => {
+    setCurrentSlide((previous) => (previous + 1) % slideImages.length);
+  };
+
   return (
-    <div className="relative min-h-screen overflow-hidden bg-black flex items-center justify-center">
-      {/* subtle animated background layer */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 z-0 bg-anim" />
-      <div aria-hidden className="pointer-events-none absolute inset-0 z-0 bg-anim-noise" />
-      <svg className="relative z-10 w-64 h-auto" version="1.1" viewBox="0.0 0.0 960.0 720.0" fill="none" stroke="none" strokeLinecap="square" strokeMiterlimit="10" xmlnsXlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><clipPath id="p.0"><path d="m0 0l960.0 0l0 720.0l-960.0 0l0 -720.0z" clipRule="nonzero"/></clipPath><g clipPath="url(#p.0)"><path fill="#000000" fillOpacity="0.0" d="m0 0l960.0 0l0 720.0l-960.0 0z" fillRule="evenodd"/><path fill="#000000" fillOpacity="0.0" d="m5.1968503 107.90551l949.6063 0l0 504.18896l-949.6063 0z" fillRule="evenodd"/><path fill="#ffffff" d="m180.00002 354.03052l97.656235 97.0625q24.03125 24.03125 41.015625 32.71875q17.0 8.6875 33.984375 9.859375l0 7.234375l-125.968735 0l0 -7.234375q11.328125 0 16.296875 -3.796875q4.984375 -3.8125 4.984375 -8.5q0 -4.6875 -1.859375 -8.390625q-1.84375 -3.71875 -12.203125 -13.875l-91.40625 -90.4375l0 85.359375q0 20.109375 2.546875 26.5625q1.953125 4.875 8.203125 8.390625q8.390625 4.6875 17.765625 4.6875l8.984375 0l0 7.234375l-112.890625 0l0 -7.234375l9.375 0q16.40625 0 23.828125 -9.5625q4.6875 -6.25 4.6875 -30.078125l0 -171.09375q0 -20.125 -2.53125 -26.765625q-1.953125 -4.6875 -8.015625 -8.203125q-8.59375 -4.6875 -17.96875 -4.6875l-9.375 0l0 -7.21875l112.890625 0l0 7.21875l-8.984375 0q-9.171875 0 -17.765625 4.5q-6.0625 3.125 -8.40625 9.375q-2.34375 6.25 -2.34375 25.78125l0 81.046875q3.90625 -3.703125 26.765625 -24.796875q58.0 -53.125 70.109375 -70.90625q5.28125 -7.8125 5.28125 -13.671875q0 -4.484375 -4.109375 -7.90625q-4.09375 -3.421875 -13.859375 -3.421875l-6.0625 0l0 -7.21875l97.26561 0l0 7.21875q-8.59375 0.203125 -15.625 2.359375q-7.03125 2.140625 -17.1875 8.296875q-10.15625 6.140625 -25.0 19.8125q-4.2968597 3.90625 -39.64061 40.046875l-40.4375 40.234375zm288.875 -124.03125q48.625 0 87.875 37.609375q39.265625 37.59375 39.265625 99.5q0 61.53125 -38.671875 100.703125q-38.671875 39.15625 -91.59375 39.15625q-58.796875 0 -93.953125 -41.21875q-35.15625 -41.21875 -35.15625 -98.25q0 -61.71875 39.546875 -99.609375q39.5625 -37.890625 92.6875 -37.890625zm-3.71875 14.265625q-37.890625 0 -60.84375 31.34375q-22.9375 31.34375 -22.9375 91.109375q0 55.859375 21.484375 91.125q21.484375 35.25 62.5 35.25q39.84375 0 62.890625 -30.953125q23.046875 -30.96875 23.046875 -89.953125q0 -59.765625 -21.59375 -93.84375q-21.578125 -34.078125 -64.546875 -34.078125zm-45.890625 76.953125l7.421875 0q0 16.796875 6.828125 24.03125q6.84375 7.21875 25.203125 7.21875l15.8125 0q17.390625 0 24.421875 -7.125q7.03125 -7.140625 7.03125 -24.125l7.421875 0l0 94.328125l-7.421875 0q0 -16.59375 -6.84375 -23.8125q-6.828125 -7.234375 -25.0 -7.234375l-16.203125 0q-17.390625 0 -24.328125 7.234375q-6.921875 7.21875 -6.921875 23.8125l-7.421875 0l0 -94.328125zm397.2578 -70.703125l-122.84375 0l0 202.14062q0 26.171875 6.734375 33.203125q6.734375 7.03125 31.546875 7.8125l0 7.234375l-114.0625 0l0 -7.234375q24.609375 -0.78125 31.4375 -7.8125q6.84375 -7.03125 6.84375 -33.203125l0 -168.35938q0 -26.171875 -6.84375 -33.203125q-6.828125 -7.03125 -31.4375 -7.8125l0 -7.21875l274.40625 0l0 7.21875q-24.609375 0.78125 -31.453125 7.8125q-6.828125 7.03125 -6.828125 33.203125l0 168.35938q0 26.171875 6.828125 33.203125q6.84375 7.03125 31.453125 7.8125l0 7.234375l-113.859375 0l0 -7.234375q24.40625 -0.78125 31.234375 -7.703125q6.84375 -6.9375 6.84375 -33.3125l0 -202.14062z" fillRule="nonzero"/></g></svg>
-      <style>{`
-        .bg-anim {
-          background:
-            /* stronger steady base glow */
-            radial-gradient(900px 600px at 50% 55%, rgba(255, 255, 255, 0.12), transparent 68%),
-            /* animated layers (more noticeable) */
-            radial-gradient(1100px 700px at 15% 25%, rgba(255, 255, 255, 0.18), transparent 62%),
-            radial-gradient(900px 650px at 85% 30%, rgba(255, 255, 255, 0.15), transparent 62%),
-            radial-gradient(900px 700px at 50% 85%, rgba(255, 255, 255, 0.14), transparent 64%);
-          /* oversize the layers so motion never "leaves" the viewport */
-          background-size: 100% 100%, 170% 170%, 185% 185%, 175% 175%;
-          background-position: 50% 55%, 30% 30%, 70% 30%, 50% 70%;
-          filter: blur(18px);
-          opacity: 0.95;
-          animation: bg-pan 12s ease-in-out infinite;
-          will-change: background-position, background-size, opacity;
-        }
+    <div className="theme-page min-h-screen">
+      <nav className="theme-nav sticky top-0 z-50 border-b backdrop-blur">
+        <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4">
+          <div className="flex items-center gap-2">
+            <Shield className="h-6 w-6" />
+            <span className="text-lg font-semibold">Patriot Housing</span>
+          </div>
 
-        .bg-anim-noise {
-          /* a touch of moving grain so you can perceive motion on black */
-          background-image: repeating-linear-gradient(
-            0deg,
-            rgba(255, 255, 255, 0.03) 0px,
-            rgba(255, 255, 255, 0.03) 1px,
-            transparent 2px,
-            transparent 6px
-          );
-          background-size: 180px 180px;
-          background-position: 0 0;
-          opacity: 0.06;
-          mix-blend-mode: overlay;
-          animation: noise-pan 4.25s linear infinite;
-          will-change: background-position;
-        }
+          <div className="hidden items-center gap-5 md:flex">
+            {navigationLinks.map((link) => {
+              const Icon = link.icon;
+              return (
+                <a key={link.name} href={link.href} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
+                  <Icon className="h-4 w-4" />
+                  <span>{link.name}</span>
+                </a>
+              );
+            })}
+            <Button size="sm">Get Involved</Button>
+          </div>
 
-        @keyframes bg-pan {
-          0% {
-            /* base glow stays centered; other blobs start offset */
-            background-position: 50% 55%, 22% 28%, 78% 32%, 52% 76%;
-            background-size: 100% 100%, 170% 170%, 185% 185%, 175% 175%;
-            opacity: 0.92;
-          }
-          25% {
-            background-position: 50% 55%, 40% 18%, 66% 46%, 70% 64%;
-            background-size: 100% 100%, 178% 178%, 192% 192%, 182% 182%;
-            opacity: 0.98;
-          }
-          50% {
-            background-position: 50% 55%, 60% 52%, 44% 58%, 36% 44%;
-            background-size: 100% 100%, 188% 188%, 200% 200%, 190% 190%;
-            opacity: 1.0;
-          }
-          75% {
-            background-position: 50% 55%, 34% 62%, 72% 40%, 44% 86%;
-            background-size: 100% 100%, 180% 180%, 194% 194%, 184% 184%;
-            opacity: 0.98;
-          }
-          100% {
-            background-position: 50% 55%, 22% 28%, 78% 32%, 52% 76%;
-            background-size: 100% 100%, 170% 170%, 185% 185%, 175% 175%;
-            opacity: 0.92;
-          }
-        }
+          <button
+            className="rounded-md border border-blue-700 bg-blue-700 p-2 text-white hover:bg-blue-800 md:hidden"
+            onClick={() => setMobileMenuOpen((open) => !open)}
+            aria-label="Toggle mobile menu"
+          >
+            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
 
-        @keyframes noise-pan {
-          0% {
-            background-position: 0 0;
-          }
-          50% {
-            background-position: -90px 120px;
-          }
-          100% {
-            background-position: -180px 180px;
-          }
-        }
+        {mobileMenuOpen && (
+          <div className="border-t px-4 py-3 md:hidden">
+            <div className="mx-auto flex max-w-6xl flex-col gap-3">
+              {navigationLinks.map((link) => {
+                const Icon = link.icon;
+                return (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <Icon className="h-4 w-4" />
+                    {link.name}
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        )}
+      </nav>
 
-        @media (prefers-reduced-motion: reduce) {
-          .bg-anim,
-          .bg-anim-noise {
-            animation: none;
-          }
-        }
-      `}</style>
+      <section className="theme-hero px-4 py-20">
+        <div className="mx-auto max-w-5xl text-center">
+          <h1 className="text-3xl font-bold md:text-5xl">Welcome to Patriot Housing</h1>
+          <p className="theme-hero-copy mx-auto mt-5 max-w-3xl text-lg md:text-xl">
+            Providing safe, affordable housing to veterans and their families, because those who served deserve a place to call home.
+          </p>
+          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            <Button size="lg" variant="secondary">
+              Learn More <ArrowRight className="h-4 w-4" />
+            </Button>
+            <Button size="lg">Apply for Housing</Button>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-6xl px-4 py-12">
+        <div className="relative overflow-hidden rounded-xl border">
+          {slideImages.map((slide, index) => (
+            <div key={slide.url} className={index === currentSlide ? "block" : "hidden"}>
+              <div className="relative h-[320px] w-full md:h-[500px]">
+                <Image
+                  src={slide.url}
+                  alt={slide.caption}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 1200px"
+                  className="object-cover"
+                  priority={index === 0}
+                />
+              </div>
+              <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 to-transparent p-6">
+                <p className="text-xl font-semibold text-white md:text-3xl">{slide.caption}</p>
+              </div>
+            </div>
+          ))}
+
+          <button
+            onClick={goToPreviousSlide}
+            className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full border border-blue-700 bg-blue-700 p-2 text-white hover:bg-blue-800"
+            aria-label="Previous slide"
+          >
+            <ArrowLeft className="h-5 w-5" />
+          </button>
+          <button
+            onClick={goToNextSlide}
+            className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full border border-blue-700 bg-blue-700 p-2 text-white hover:bg-blue-800"
+            aria-label="Next slide"
+          >
+            <ArrowRight className="h-5 w-5" />
+          </button>
+        </div>
+      </section>
+
+      <section id="volunteering" className="theme-subtle px-4 py-16">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="text-center text-2xl font-bold md:text-3xl">About Patriot Housing</h2>
+          <p className="mt-5 text-muted-foreground">
+            Patriot Housing is dedicated to ensuring that every veteran has access to safe, affordable, and dignified housing. We understand that the transition from military to civilian life can be challenging, and having a stable home is the foundation for success in all other areas of life.
+          </p>
+          <p className="mt-4 text-muted-foreground">
+            Founded by veterans for veterans, our organization has been serving those who served since 2010. We work tirelessly to provide not just housing, but comprehensive support services that help veterans and their families thrive in their communities.
+          </p>
+          <p className="mt-4 text-muted-foreground">
+            Founded by veterans for veterans, our organization has been serving those who served since 2010. We work tirelessly to provide not just housing, but comprehensive support services that help veterans and their families thrive in their communities.
+          </p>
+          <p className="mt-4 text-muted-foreground">
+            Through partnerships with local organizations, government agencies, and generous community support, we&apos;ve helped over 5,000 veterans find homes. Our programs include emergency housing assistance, long-term affordable housing solutions, home renovation services, and ongoing case management to ensure lasting success.
+          </p>
+          <p className="mt-4 text-muted-foreground">
+            We partner with local organizations, agencies, and volunteers to provide emergency help, affordable housing pathways, and ongoing advocacy.
+          </p>
+
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            <div className="theme-card rounded-lg border p-4 text-center">
+              <p className="text-2xl font-bold">5,000+</p>
+              <p className="text-sm text-muted-foreground">Veterans Housed</p>
+            </div>
+            <div className="theme-card rounded-lg border p-4 text-center">
+              <p className="text-2xl font-bold">500+</p>
+              <p className="text-sm text-muted-foreground">Active Volunteers</p>
+            </div>
+            <div className="theme-card rounded-lg border p-4 text-center">
+              <p className="text-2xl font-bold">15+</p>
+              <p className="text-sm text-muted-foreground">Years of Service</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="resources" className="px-4 py-16">
+        <div className="mx-auto max-w-6xl">
+          <h2 className="text-center text-2xl font-bold md:text-3xl">Veteran Resources</h2>
+          <p className="mx-auto mt-3 max-w-2xl text-center text-muted-foreground">
+            Support services for housing, careers, and healthcare.
+          </p>
+
+          <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {veteranResources.map((category) => {
+              const Icon = category.icon;
+              return (
+                <article key={category.category} className="theme-card rounded-lg border p-5">
+                  <div className="mb-4 flex items-center gap-2">
+                    <Icon className="h-5 w-5" />
+                    <h3 className="font-semibold">{category.category}</h3>
+                  </div>
+
+                  <div className="space-y-3">
+                    {category.resources.map((resource) => (
+                      <div key={resource.name} className="border-l pl-3">
+                        <a href={resource.url} className="inline-flex items-center gap-1 text-sm font-medium hover:underline">
+                          {resource.name}
+                          <ExternalLink className="h-3 w-3" />
+                        </a>
+                        <p className="text-sm text-muted-foreground">{resource.description}</p>
+                      </div>
+                    ))}
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section id="donate" className="px-4 pb-16">
+        <div className="theme-hero mx-auto max-w-4xl rounded-xl p-8 text-center md:p-10">
+          <h2 className="text-2xl font-bold">Need Help Navigating Resources?</h2>
+          <p className="theme-hero-copy mx-auto mt-3 max-w-2xl">
+            Our advocates can help veterans and families find and access services quickly.
+          </p>
+          <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
+            <Button size="lg" variant="secondary">Contact an Advocate</Button>
+            <Button size="lg" variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary">
+              Call: (555) 123-4567
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <footer id="contact" className="theme-subtle border-t px-4 py-10">
+        <div className="mx-auto grid w-full max-w-6xl gap-8 md:grid-cols-3">
+          <div>
+            <div className="mb-3 flex items-center gap-2">
+              <Shield className="h-5 w-5" />
+              <span className="font-semibold">Patriot Housing</span>
+            </div>
+            <p className="text-sm text-muted-foreground">Serving those who served with dignity, respect, and gratitude.</p>
+          </div>
+
+          <div id="newsletter">
+            <h3 className="font-semibold">Contact</h3>
+            <ul className="mt-2 space-y-1 text-sm text-muted-foreground">
+              <li>Phone: (555) 123-4567</li>
+              <li>Email: info@patriothousing.org</li>
+              <li>123 Veterans Way, Hometown, ST 12345</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-semibold">Social</h3>
+            <div className="mt-3 flex items-center gap-2">
+              {socialMedia.map((social) => {
+                const Icon = social.icon;
+                return (
+                  <a key={social.name} href={social.url} aria-label={social.name} className="rounded-md border p-2 hover:bg-accent">
+                    <Icon className="h-4 w-4" />
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        <p className="mx-auto mt-8 max-w-6xl border-t pt-6 text-center text-sm text-muted-foreground">
+          © 2026 Patriot Housing. All rights reserved.
+        </p>
+      </footer>
     </div>
   );
 }
