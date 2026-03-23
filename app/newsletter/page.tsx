@@ -11,8 +11,8 @@ export default function NewsLetter() {
                     <h1 className="mt-3 text-3xl font-bold tracking-tight md:text-5xl">
                         Newsletter
                     </h1>
-                    <p className="mt-4 max-w-2xl text-base text-slate-600 md:text-lg">
-                        Insert Description Here
+                    <p className="mt-4 max-w-2xl text-base text-late-600 md:text-lg">
+                        See what we've been up to! From all the latest news and updates to success stories and events, we're keeping you updated on all things Patriot Housing.
                     </p>
                 </section>
 
