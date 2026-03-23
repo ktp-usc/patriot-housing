@@ -10,8 +10,8 @@ export default function Home() {
 
       <main className="mx-auto w-full max-w-7xl px-6 py-10 md:px-10 md:py-15">
 
-        <section className="theme-hero px-4 py-20">
-          <div className="mx-auto max-w-5xl text-center bg-">
+        <section className="theme-hero px-4 py-20 bg-[url('/images/backgroundImage.jpg')] bg-cover bg-center" >
+          <div className="mx-auto max-w-5xl text-center">
             <h1 className="text-3xl font-bold md:text-5xl">
               Welcome to Patriot Housing
             </h1>
