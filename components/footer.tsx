@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className="border-t border-slate-200 bg-blue-700">
       <div className="mx-auto w-full max-w-7xl px-6 py-6 text-sm md:px-10 text-white mt-8 grid gap-6 md:grid-cols-2">
         <section className="">
-          <Image src={Logo} alt="Patriot Housing Logo" className="size-20 inline-flex" />
+          <Image src={Logo} alt="Patriot Housing Logo" className="size-20 inline-flex rounded-full" />
           <h1 className="text-5xl font-bold inline-flex">Patriot Housing</h1>
         </section>
         <section>
