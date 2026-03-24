@@ -8,7 +8,7 @@ export default function Home() {
     <div className="min-h-screen bg-white text-slate-900">
       <Header />
 
-      <main className="mx-auto w-full max-w-7xl px-6 py-10 md:px-10 md:py-15">
+      <main className="mx-auto w-full max-w-7xl px-6 py-10 md:px-10 md:py-15 flex flex-col space-y-4">
 
         <section className="relative overflow-hidden px-4 py-20 bg-[url('/images/backgroundImage.jpg')] bg-cover bg-center rounded-2xl drop-shadow-amber-100 ">
           {/* Overlay (tint) */}
