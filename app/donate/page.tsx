@@ -21,7 +21,7 @@ export default function DonatePage() {
                     </p>
                     <p style={{fontSize: "20px", paddingTop: "30px"}}>We build pathways to permanent housing and
                         self-sufficiency. One Hero, one home, one community at a time.</p>
-                    <p style={{fontSize: "20px", paddingTop: "30px"}}>We can't do it alone.
+                    <p style={{fontSize: "20px", paddingTop: "30px"}}>We can&apos;t do it alone.
                         Your support turns compassion into action.</p>
 
                 </div>
