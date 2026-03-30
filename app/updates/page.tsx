@@ -52,7 +52,7 @@ async function getFacebookPosts(): Promise<FacebookPost[]> {
     }
 }
 
-export default async function NewsLetter() {
+export default async function Updates() {
     const posts = await getFacebookPosts();
 
     return (
@@ -62,7 +62,7 @@ export default async function NewsLetter() {
             <main className="mx-auto w-full max-w-7xl px-6 py-10 md:px-10 md:py-15">
                 <section className="rounded-2xl border border-slate-200 bg-white p-8 md:p-12">
                     <h1 className="mt-3 text-3xl font-bold tracking-tight md:text-5xl">
-                        Newsletter
+                        Updates
                     </h1>
                     <p className="mt-4 max-w-2xl text-base text-slate-600 md:text-lg">
                         Latest updates from our Facebook page
