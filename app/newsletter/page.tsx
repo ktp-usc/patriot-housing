@@ -123,7 +123,7 @@ export default function NewsletterPage() {
                         <button
                             type="submit"
                             disabled={isSubmitting}
-                            className="inline-flex w-fit items-center rounded-lg bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:bg-slate-400"
+                            className="inline-flex w-fit cursor-pointer items-center rounded-lg bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-700 active:scale-95 disabled:pointer-events-none disabled:bg-slate-400"
                         >
                             {isSubmitting ? "Submitting..." : "Join Newsletter"}
                         </button>
@@ -157,7 +157,7 @@ export default function NewsletterPage() {
                             />
                             <button
                                 type="submit"
-                                className="inline-flex w-fit items-center rounded-md bg-slate-800 px-3 py-2 text-xs font-semibold text-white transition hover:bg-slate-700"
+                                className="inline-flex w-fit cursor-pointer items-center rounded-md bg-slate-800 px-3 py-2 text-xs font-semibold text-white transition hover:bg-slate-700 active:scale-95"
                             >
                                 Login
                             </button>
