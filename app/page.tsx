@@ -35,25 +35,19 @@ export default function Home() {
 
         {/* TODO: Image Courasel Here, can also put in section below*/}
         <section className="rounded-2xl border border-slate-200 bg-white p-8 md:p-12">
-          <h1 className="mt-3 text-3xl font-bold tracking-tight md:text-5xl">
-            Patriot Housing
-          </h1>
+          <h3 className="text-xl font-bold text-black">
+            At The Patriot Housing Project, we’re working to change that narrative.
+            Our mission is simple: to provide housing, jobs, and hope for Veterans who have fallen on hard times.
+            We’re building pathways to permanent housing and self-sufficiency — one Hero, one home, one community at a time.
+            But we can’t do it alone.
+            Your support is what turns compassion into action.
+          </h3>
           <p className="mt-4 max-w-2xl text-base text-slate-600 md:text-lg">
+            {/* TODO: Marvin suggested adding Caourasel here - under the text*/}
             Insert Description Here
           </p>
         </section>
 
-        <section className="mt-8 grid gap-6 md:grid-cols-3">
-          <div className="rounded-xl border border-slate-200 bg-slate-50 p-6">
-            Section 1
-          </div>
-          <div className="rounded-xl border border-slate-200 bg-slate-50 p-6">
-            Section 2
-          </div>
-          <div className="rounded-xl border border-slate-200 bg-slate-50 p-6">
-            Section 3
-          </div>
-        </section>
       </main>
 
       <Footer />
