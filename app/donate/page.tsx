@@ -26,7 +26,7 @@ export default function DonatePage() {
                     </p>
 
                     <p className="text-[20px] pt-8">
-                        We can't do it alone.
+                        We cant do it alone.
                         Your support turns compassion into action.
                     </p>
 
