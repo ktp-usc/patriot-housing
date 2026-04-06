@@ -1,8 +1,12 @@
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import HomeImageCarousel from "@/components/home-image-carousel";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious,} from "@/components/ui/carousel"
+import CarouselImage1 from "@/components/images/CarouselImage1.jpg";
+import CarouselImage2 from "@/components/images/CarouselImage2.jpg";
+import CarouselImage3 from "@/components/images/CarouselImage3.jpg";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -34,7 +38,6 @@ export default function Home() {
           </div>
         </section>
 
-        <HomeImageCarousel />
         <section className="rounded-2xl border border-slate-200 bg-white p-8 md:p-12">
           <h3 className="text-xl font-bold text-black">
             At The Patriot Housing Project, we’re working to change that narrative.
@@ -43,10 +46,22 @@ export default function Home() {
             But we can’t do it alone.
             Your support is what turns compassion into action.
           </h3>
-          <p className="mt-4 max-w-2xl text-base text-slate-600 md:text-lg">
-            {/* TODO: Marvin suggested adding Caourasel here - under the text*/}
-            Insert Description Here
-          </p>
+          <Carousel>
+            <CarouselContent>
+              <CarouselItem>
+                <Image src={CarouselImage1} alt="Carousel Image 1" className="block h-80 w-full rounded-2xl object-cover" />
+              </CarouselItem>
+              <CarouselItem>
+                <Image src={CarouselImage2} alt="Carousel Image 2" className="block h-80 w-full rounded-2xl object-cover" />
+              </CarouselItem>
+              <CarouselItem>
+                <Image src={CarouselImage3} alt="Carousel Image 3" className="block h-80 w-full rounded-2xl object-cover" />
+              </CarouselItem>
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+
         </section>
 
       </main>
