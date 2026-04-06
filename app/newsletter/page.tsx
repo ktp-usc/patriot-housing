@@ -6,8 +6,7 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { postJSON } from "@/client/api/jsonutils";
 
-const ADMIN_PASSWORD = "PatriotHousing123!";
-const ADMIN_SESSION_KEY = "patriot_housing_database_auth";
+const DATABASE_PASSWORD = "PatriotHousing123!";
 
 type NewsletterFormState = {
     firstName: string;
@@ -27,8 +26,8 @@ export default function NewsletterPage() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitError, setSubmitError] = useState("");
     const [isSubmitted, setIsSubmitted] = useState(false);
-    const [adminPasswordInput, setAdminPasswordInput] = useState("");
-    const [adminError, setAdminError] = useState("");
+    const [databasePasswordInput, setDatabasePasswordInput] = useState("");
+    const [databaseError, setDatabaseError] = useState("");
 
     async function handleNewsletterSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -48,20 +47,18 @@ export default function NewsletterPage() {
         }
     }
 
-    function handleDatabaseLogin(event: FormEvent<HTMLFormElement>) {
+    function handleDatabaseAccess(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        setAdminError("");
+        setDatabaseError("");
 
-        if (adminPasswordInput !== ADMIN_PASSWORD) {
-            setAdminError("Incorrect password.");
+        const normalizedPasswordInput = databasePasswordInput.trim();
+
+        if (normalizedPasswordInput !== DATABASE_PASSWORD) {
+            setDatabaseError("Incorrect password.");
             return;
         }
 
-        if (typeof window !== "undefined") {
-            window.sessionStorage.setItem(ADMIN_SESSION_KEY, "true");
-        }
-
-        router.push("/database");
+        router.push(`/database?access=${encodeURIComponent(normalizedPasswordInput)}`);
     }
 
     return (
@@ -144,28 +141,29 @@ export default function NewsletterPage() {
                     <section className="mt-10 border-t border-slate-200 pt-6">
                         <h2 className="text-xs font-semibold uppercase tracking-wide text-slate-500">Database Access</h2>
                         <p className="mt-1 text-xs text-slate-500">
-                            Enter the access string to open the database page.
+                            Enter the password to open the database page.
                         </p>
 
-                        <form onSubmit={handleDatabaseLogin} className="mt-3 flex flex-col gap-2 md:flex-row md:items-center">
+                        <form onSubmit={handleDatabaseAccess} className="mt-3 flex flex-col gap-2 md:flex-row md:items-center">
                             <input
                                 type="password"
-                                value={adminPasswordInput}
-                                onChange={(event) => setAdminPasswordInput(event.target.value)}
+                                value={databasePasswordInput}
+                                onChange={(event) => setDatabasePasswordInput(event.target.value)}
                                 className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none transition focus:border-slate-600 md:max-w-[220px]"
+                                placeholder="Password"
                                 required
                             />
                             <button
                                 type="submit"
                                 className="inline-flex w-fit items-center rounded-md bg-slate-800 px-3 py-2 text-xs font-semibold text-white transition hover:bg-slate-700"
                             >
-                                Login
+                                Open Database
                             </button>
                         </form>
 
-                        {adminError && (
+                        {databaseError && (
                             <p className="mt-3 rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
-                                {adminError}
+                                {databaseError}
                             </p>
                         )}
                     </section>
