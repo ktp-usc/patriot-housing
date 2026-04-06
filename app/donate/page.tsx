@@ -36,10 +36,16 @@ export default function DonatePage() {
                         Be the reason a Veteran finds stability
                     </h1>
 
-                    {/* Button */}
+                    <a
+                        href="https://givebutter.com/c/XRhwPV"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
                     <Button className="mt-6 ml-55 bg-blue-600 hover:bg-blue-700">
                         Support a Veteran
                     </Button>
+                    </a>
                 </div>
 
             </div>
