@@ -31,10 +31,17 @@ export default function DonatePage() {
                             Your support turns compassion into action.
                         </p>
 
+<<<<<<< HEAD
                         {/* Heading */}
                         <h1 className="pt-12 text-4xl text-center md:text-left">
                             Be the reason a Veteran finds stability
                         </h1>
+=======
+                    <p className="text-[20px] pt-8">
+                        We can&apos;t do it alone.
+                        Your support turns compassion into action.
+                    </p>
+>>>>>>> d513d410fb113068085a11d381c148536f36652e
 
                         {/* Button */}
                         <div className="mt-6 flex justify-center md:justify-start">
