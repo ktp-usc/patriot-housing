@@ -1,5 +1,6 @@
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import HomeImageCarousel from "@/components/home-image-carousel";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
@@ -33,7 +34,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* TODO: Image Courasel Here, can also put in section below*/}
+        <HomeImageCarousel />
         <section className="rounded-2xl border border-slate-200 bg-white p-8 md:p-12">
           <h3 className="text-xl font-bold text-black">
             At The Patriot Housing Project, we’re working to change that narrative.
