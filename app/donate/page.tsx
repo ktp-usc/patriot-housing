@@ -2,7 +2,6 @@ import Image from "next/image";
 import guy from "@/components/images/Guy.png";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/header";
-import Footer from "@/components/footer";
 
 export default function DonatePage() {
     return (
@@ -27,7 +26,7 @@ export default function DonatePage() {
                     </p>
 
                     <p className="text-[20px] pt-8">
-                        We can't do it alone.
+                        We can&apos;t do it alone.
                         Your support turns compassion into action.
                     </p>
 
@@ -43,8 +42,6 @@ export default function DonatePage() {
                 </div>
 
             </div>
-            <Footer />
         </div>
-
     );
 }
