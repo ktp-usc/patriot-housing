@@ -31,10 +31,10 @@ export default function DonatePage() {
                             Your support turns compassion into action.
                         </p>
 
-                        {/* Heading */}
-                        <h1 className="pt-12 text-center text-4xl">
-                            Be the reason a Veteran finds stability
-                        </h1>
+                    <p className="text-[20px] pt-8">
+                        We can&apos;t do it alone.
+                        Your support turns compassion into action.
+                    </p>
 
                         {/* Button */}
                         <div className="mt-6 flex justify-center">
@@ -45,7 +45,20 @@ export default function DonatePage() {
                     </div>
                 </section>
             </main>
+                <div className="flex justify-center">
+                    <a
+                        href="https://givebutter.com/c/XRhwPV"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
 
+                    <Button className="mt-6 ml-55 bg-blue-600 hover:bg-blue-700">
+                        Support a Veteran
+                    </Button>
+                    </a>
+                </div>
+
+            
             <Footer />
         </div>
     );

@@ -1,3 +1,3 @@
 export const qk = {
-    /* react-query keys here */
+    subscribers: ["subscribers"] as const,
 };
