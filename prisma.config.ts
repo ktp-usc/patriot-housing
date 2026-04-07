@@ -1,10 +1,8 @@
 import { defineConfig } from "prisma/config";
-import { getServerEnv } from "./lib/env";
-
-const databaseUrl = getServerEnv("DATABASE_URL");
+const databaseUrl = process.env.DATABASE_URL;
 
 if (!databaseUrl) {
-  throw new Error("DATABASE_URL is missing in .env");
+  throw new Error("DATABASE_URL is missing from the environment");
 }
 
 export default defineConfig({

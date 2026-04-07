@@ -41,6 +41,11 @@ function loadDotEnv(): Record<string, string> {
 }
 
 export function getServerEnv(key: string): string | undefined {
+  const runtimeValue = process.env[key];
+  if (typeof runtimeValue === "string" && runtimeValue.length > 0) {
+    return runtimeValue;
+  }
+
   const value = loadDotEnv()[key];
   return value && value.length > 0 ? value : undefined;
 }
