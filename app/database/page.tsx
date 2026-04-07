@@ -25,10 +25,8 @@ type SearchParams = {
 };
 
 const BREVO_API_URL = "https://api.brevo.com/v3/smtp/email";
-const DEFAULT_SENDER_EMAIL = "patriothousingproject@outlook.com";
 const DEFAULT_SENDER_NAME = "Patriot Housing Project";
 const DEFAULT_BATCH_SIZE = 100;
-const DEFAULT_DATABASE_PASSWORD = "PatriotHousing123!";
 
 function chunk<T>(items: T[], size: number): T[][] {
 	const chunks: T[][] = [];
@@ -156,7 +154,11 @@ async function sendNewsletterAction(formData: FormData) {
 	const finalHtmlContent = htmlHasContent ? htmlContentRaw : textToHtml(content);
 	const finalTextContent = content || "Newsletter update with image content.";
 
-	const databasePassword = getServerEnv("DATABASE_PAGE_PASSWORD") ?? DEFAULT_DATABASE_PASSWORD;
+	const databasePassword = getServerEnv("DATABASE_PAGE_PASSWORD");
+
+	if (!databasePassword) {
+		redirect("/database?status=error&message=DATABASE_PAGE_PASSWORD is not configured in .env.example.");
+	}
 
 	if (access !== databasePassword) {
 		redirect("/database?status=error&message=Access denied. Provide a valid password.");
@@ -167,11 +169,15 @@ async function sendNewsletterAction(formData: FormData) {
 	}
 
 	const apiKey = getServerEnv("BREVO_API_KEY");
-	const senderEmail = getServerEnv("BREVO_SENDER_EMAIL") ?? DEFAULT_SENDER_EMAIL;
+	const senderEmail = getServerEnv("BREVO_SENDER_EMAIL");
 	const senderName = getServerEnv("BREVO_SENDER_NAME") ?? DEFAULT_SENDER_NAME;
 
 	if (!apiKey) {
 		redirect(`/database?access=${encodeURIComponent(access)}&status=error&message=BREVO_API_KEY is not configured.`);
+	}
+
+	if (!senderEmail) {
+		redirect(`/database?access=${encodeURIComponent(access)}&status=error&message=BREVO_SENDER_EMAIL is not configured.`);
 	}
 
 	const databaseUrl = getServerEnv("DATABASE_URL");
@@ -256,8 +262,9 @@ export default async function DatabasePage({
 	const failed = getSingleParam(resolvedSearchParams?.failed);
 	const message = getSingleParam(resolvedSearchParams?.message);
 
-	const databasePassword = getServerEnv("DATABASE_PAGE_PASSWORD") ?? DEFAULT_DATABASE_PASSWORD;
-	const hasAccess = normalizeAccess(access) === normalizeAccess(databasePassword);
+	const databasePassword = getServerEnv("DATABASE_PAGE_PASSWORD");
+	const hasPasswordConfigured = typeof databasePassword === "string" && databasePassword.length > 0;
+	const hasAccess = hasPasswordConfigured && normalizeAccess(access) === normalizeAccess(databasePassword);
 
 	let subscribers: SubscriberRow[] = [];
 	let tableError = "";
@@ -295,7 +302,11 @@ export default async function DatabasePage({
 				<section className="rounded-2xl border border-slate-200 bg-white p-8 md:p-12">
 					<h1 className="text-3xl font-bold tracking-tight md:text-5xl">Database</h1>
 
-					{!hasAccess ? (
+					{!hasPasswordConfigured ? (
+						<p className="mt-4 rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+							DATABASE_PAGE_PASSWORD is not configured in .env.example.
+						</p>
+					) : !hasAccess ? (
 						<p className="mt-4 rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
 							Access denied. Return to the newsletter page and enter the correct password.
 						</p>

@@ -29,24 +29,30 @@ function parseEnvFile(content: string): Record<string, string> {
   return result;
 }
 
-function loadExampleEnv(): Record<string, string> {
+function loadRuntimeEnv(): Record<string, string> {
+  const envPath = path.join(process.cwd(), ".env");
   const envExamplePath = path.join(process.cwd(), ".env.example");
 
-  if (!fs.existsSync(envExamplePath)) {
-    return {};
+  if (fs.existsSync(envPath)) {
+    const content = fs.readFileSync(envPath, "utf8");
+    return parseEnvFile(content);
   }
 
-  const content = fs.readFileSync(envExamplePath, "utf8");
-  return parseEnvFile(content);
+  if (fs.existsSync(envExamplePath)) {
+    const content = fs.readFileSync(envExamplePath, "utf8");
+    return parseEnvFile(content);
+  }
+
+  return {};
 }
 
 export function getServerEnv(key: string): string | undefined {
-  const fromExample = loadExampleEnv()[key];
-  return fromExample && fromExample.length > 0 ? fromExample : undefined;
+  const value = loadRuntimeEnv()[key];
+  return value && value.length > 0 ? value : undefined;
 }
 
 export function ensureProcessEnvFromExample(keys: string[]): void {
-  const values = loadExampleEnv();
+  const values = loadRuntimeEnv();
 
   for (const key of keys) {
     if (typeof process.env[key] === "string" && process.env[key]!.length > 0) {

@@ -6,8 +6,6 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { postJSON } from "@/client/api/jsonutils";
 
-const DATABASE_PASSWORD = "PatriotHousing123!";
-
 type NewsletterFormState = {
     firstName: string;
     lastName: string;
@@ -53,8 +51,8 @@ export default function NewsletterPage() {
 
         const normalizedPasswordInput = databasePasswordInput.trim();
 
-        if (normalizedPasswordInput !== DATABASE_PASSWORD) {
-            setDatabaseError("Incorrect password.");
+        if (!normalizedPasswordInput) {
+            setDatabaseError("Password is required.");
             return;
         }
 
