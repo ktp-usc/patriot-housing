@@ -3,6 +3,10 @@ import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import Carousel1 from "@/components/images/Carousel1.jpg";
+import Carousel2 from "@/components/images/Carousel2.jpg";
+import Carousel3 from "@/components/images/Carousel3.jpg";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -42,6 +46,21 @@ export default function Home() {
             But we can’t do it alone.
             Your support is what turns compassion into action.
           </h3>
+          <Carousel>
+            <CarouselContent>
+              <CarouselItem>
+                <Image src={ Carousel1 } alt="Carousel Image 1" className="block h-80 w-full rounded-2xl object-cover" />
+              </CarouselItem>
+              <CarouselItem>
+                <Image src={ Carousel2 } alt="Carousel Image 2" className="block h-80 w-full rounded-2xl object-cover" />
+              </CarouselItem>
+              <CarouselItem>
+                <Image src={ Carousel3 } alt="Carousel Image 3" className="block h-80 w-full rounded-2xl object-cover" />
+              </CarouselItem>
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
 
         </section>
 
