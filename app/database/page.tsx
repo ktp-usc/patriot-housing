@@ -1,7 +1,7 @@
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { redirect } from "next/navigation";
-import { ensureProcessEnvFromExample, getServerEnv } from "@/lib/env";
+import { ensureProcessEnvFromDotEnv, getServerEnv } from "@/lib/env";
 import DatabaseEmailComposer from "@/components/database-email-composer";
 
 type BrevoRecipient = {
@@ -157,7 +157,7 @@ async function sendNewsletterAction(formData: FormData) {
 	const databasePassword = getServerEnv("DATABASE_PAGE_PASSWORD");
 
 	if (!databasePassword) {
-		redirect("/database?status=error&message=DATABASE_PAGE_PASSWORD is not configured in .env.example.");
+		redirect("/database?status=error&message=DATABASE_PAGE_PASSWORD is not configured in .env.");
 	}
 
 	if (access !== databasePassword) {
@@ -187,7 +187,7 @@ async function sendNewsletterAction(formData: FormData) {
 		);
 	}
 
-	ensureProcessEnvFromExample(["DATABASE_URL"]);
+	ensureProcessEnvFromDotEnv(["DATABASE_URL"]);
 	const { prisma } = await import("@/lib/prisma");
 	const subscribers = await prisma.newsletterSubscriber.findMany({
 		select: { email: true },
@@ -272,10 +272,10 @@ export default async function DatabasePage({
 	if (hasAccess) {
 		const databaseUrl = getServerEnv("DATABASE_URL");
 		if (!isPostgresUrl(databaseUrl)) {
-			tableError = "DATABASE_URL must use postgres:// or postgresql:// in .env.example.";
+			tableError = "DATABASE_URL must use postgres:// or postgresql:// in .env.";
 		} else {
 			try {
-				ensureProcessEnvFromExample(["DATABASE_URL"]);
+				ensureProcessEnvFromDotEnv(["DATABASE_URL"]);
 				const { prisma } = await import("@/lib/prisma");
 				subscribers = await prisma.newsletterSubscriber.findMany({
 					select: {
@@ -287,7 +287,7 @@ export default async function DatabasePage({
 					orderBy: { createdAt: "desc" },
 				});
 			} catch {
-				tableError = "Unable to load subscribers. Verify .env.example database settings.";
+				tableError = "Unable to load subscribers. Verify .env database settings.";
 			}
 		}
 	}
@@ -304,7 +304,7 @@ export default async function DatabasePage({
 
 					{!hasPasswordConfigured ? (
 						<p className="mt-4 rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
-							DATABASE_PAGE_PASSWORD is not configured in .env.example.
+							DATABASE_PAGE_PASSWORD is not configured in .env.
 						</p>
 					) : !hasAccess ? (
 						<p className="mt-4 rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">

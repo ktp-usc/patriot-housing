@@ -1,16 +1,16 @@
 import { PrismaClient } from "@prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { Pool } from "pg";
-import { ensureProcessEnvFromExample, getServerEnv } from "@/lib/env";
+import { ensureProcessEnvFromDotEnv, getServerEnv } from "@/lib/env";
 
 const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
 
-ensureProcessEnvFromExample(["DATABASE_URL"]);
+ensureProcessEnvFromDotEnv(["DATABASE_URL"]);
 
 const databaseUrl = getServerEnv("DATABASE_URL");
 
 if (!databaseUrl) {
-  throw new Error("DATABASE_URL is missing in .env.example");
+  throw new Error("DATABASE_URL is missing in .env");
 }
 
 const pool = new Pool({ connectionString: databaseUrl });

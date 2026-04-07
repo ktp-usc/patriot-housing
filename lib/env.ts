@@ -29,17 +29,11 @@ function parseEnvFile(content: string): Record<string, string> {
   return result;
 }
 
-function loadRuntimeEnv(): Record<string, string> {
+function loadDotEnv(): Record<string, string> {
   const envPath = path.join(process.cwd(), ".env");
-  const envExamplePath = path.join(process.cwd(), ".env.example");
 
   if (fs.existsSync(envPath)) {
     const content = fs.readFileSync(envPath, "utf8");
-    return parseEnvFile(content);
-  }
-
-  if (fs.existsSync(envExamplePath)) {
-    const content = fs.readFileSync(envExamplePath, "utf8");
     return parseEnvFile(content);
   }
 
@@ -47,12 +41,12 @@ function loadRuntimeEnv(): Record<string, string> {
 }
 
 export function getServerEnv(key: string): string | undefined {
-  const value = loadRuntimeEnv()[key];
+  const value = loadDotEnv()[key];
   return value && value.length > 0 ? value : undefined;
 }
 
-export function ensureProcessEnvFromExample(keys: string[]): void {
-  const values = loadRuntimeEnv();
+export function ensureProcessEnvFromDotEnv(keys: string[]): void {
+  const values = loadDotEnv();
 
   for (const key of keys) {
     if (typeof process.env[key] === "string" && process.env[key]!.length > 0) {

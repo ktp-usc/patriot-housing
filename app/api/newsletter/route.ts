@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { ensureProcessEnvFromExample, getServerEnv } from "@/lib/env";
+import { ensureProcessEnvFromDotEnv, getServerEnv } from "@/lib/env";
 
 type NewsletterPayload = {
   firstName?: string;
@@ -11,12 +11,12 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(request: Request) {
   try {
-    ensureProcessEnvFromExample(["DATABASE_URL"]);
+    ensureProcessEnvFromDotEnv(["DATABASE_URL"]);
 
     const databaseUrl = getServerEnv("DATABASE_URL");
     if (!databaseUrl || !/^postgres(ql)?:\/\//i.test(databaseUrl)) {
       return NextResponse.json(
-        { message: "DATABASE_URL must use postgres:// or postgresql:// in .env.example." },
+        { message: "DATABASE_URL must use postgres:// or postgresql:// in .env." },
         { status: 500 },
       );
     }
