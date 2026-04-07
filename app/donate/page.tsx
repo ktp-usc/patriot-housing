@@ -25,39 +25,28 @@ export default function DonatePage() {
                             We build pathways to permanent housing and
                             self-sufficiency. One Hero, one home, one community at a time.
                         </p>
-
-                        <p className="pt-8 text-[20px]">
-                            We cant do it alone.
+                        
+                        <p className="text-[20px] pt-8">
+                            We can&apos;t do it alone.
                             Your support turns compassion into action.
                         </p>
 
-                    <p className="text-[20px] pt-8">
-                        We can&apos;t do it alone.
-                        Your support turns compassion into action.
-                    </p>
-
                         {/* Button */}
-                        <div className="mt-6 flex justify-center">
-                            <Button className="bg-blue-600 hover:bg-blue-700">
+                        <div className="flex justify-center">
+                            <a
+                                href="https://givebutter.com/c/XRhwPV"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+
+                            <Button className="mt-6 ml-55 bg-blue-600 hover:bg-blue-700">
                                 Support a Veteran
                             </Button>
+                            </a>
                         </div>
                     </div>
                 </section>
             </main>
-                <div className="flex justify-center">
-                    <a
-                        href="https://givebutter.com/c/XRhwPV"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-
-                    <Button className="mt-6 ml-55 bg-blue-600 hover:bg-blue-700">
-                        Support a Veteran
-                    </Button>
-                    </a>
-                </div>
-
             
             <Footer />
         </div>
