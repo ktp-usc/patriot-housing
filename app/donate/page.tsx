@@ -2,6 +2,7 @@ import Image from "next/image";
 import guy from "@/components/images/Guy.png";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/header";
+import Footer from "@/components/footer";
 
 export default function DonatePage() {
     return (
@@ -26,7 +27,7 @@ export default function DonatePage() {
                     </p>
 
                     <p className="text-[20px] pt-8">
-                        We cant do it alone.
+                        We can&apos;t do it alone.
                         Your support turns compassion into action.
                     </p>
 
@@ -35,13 +36,20 @@ export default function DonatePage() {
                         Be the reason a Veteran finds stability
                     </h1>
 
-                    {/* Button */}
+                    <a
+                        href="https://givebutter.com/c/XRhwPV"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
                     <Button className="mt-6 ml-55 bg-blue-600 hover:bg-blue-700">
                         Support a Veteran
                     </Button>
+                    </a>
                 </div>
 
             </div>
+            <Footer />
         </div>
     );
 }
