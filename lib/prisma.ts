@@ -1,15 +1,9 @@
-import { PrismaClient } from "@prisma/client/extension";
+import { PrismaClient } from "@prisma/client";
 import { PrismaNeon } from "@prisma/adapter-neon";
 
 const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
 
-const databaseUrl = process.env.DATABASE_URL;
-
-if (!databaseUrl) {
-  throw new Error("DATABASE_URL is missing from the environment");
-}
-
-const adapter = new PrismaNeon({ connectionString: databaseUrl });
+const adapter = new PrismaNeon({ connectionString: process.env.DATABASE_URL! });
 
 export const prisma =
   globalForPrisma.prisma ??
