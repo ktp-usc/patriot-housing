@@ -1,6 +1,5 @@
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import Carousel1 from "@/components/images/Carousel1.jpg";
@@ -29,12 +28,7 @@ export default function Home() {
             <p className="theme-hero-copy mx-auto mt-5 max-w-3xl text-lg md:text-xl text-white">
               Providing safe, affordable housing to veterans and their families, because those who served deserve a place to call home.
             </p>
-            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-              <Button size="lg" variant="secondary">
-                Learn More <ArrowRight className="h-4 w-4" />
-              </Button>
-              <Button size="lg">Apply for Housing</Button>
-            </div>
+
           </div>
         </section>
 
@@ -48,8 +42,8 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="grid items-center gap-10 lg:grid-cols-2">
-            <div className="rounded-2xl bg-gradient-to-br from-slate-900/90 to-slate-800/70 p-8 text-white shadow-xl backdrop-blur ring-1 ring-white/10">
+          <div className="grid items-stretch gap-10 lg:grid-cols-2">
+            <div className="rounded-2xl h-full flex flex-col bg-gradient-to-br from-slate-900/90 to-slate-800/70 p-8 text-white shadow-xl backdrop-blur ring-1 ring-white/10">
               <h3 className="text-2xl font-semibold text-white">
                 Changing the Story for Veterans
               </h3>
@@ -66,24 +60,19 @@ export default function Home() {
               </p>
 
               <div className="mt-6 flex gap-4">
-                <a
-                  href="/apply"
-                  className="rounded-xl bg-red-600 px-5 py-3 font-semibold text-white hover:bg-red-700"
-                >
-                  Apply for Housing
-                </a>
+
 
                 <a
                   href="/donate"
-                  className="rounded-xl border border-white/20 px-5 py-3 font-semibold text-white hover:bg-white/10"
+                  className="rounded-xl border bg-blue-800 border-white/20 px-5 py-3 font-semibold text-white hover:bg-blue-900"
                 >
                   Donate Now
                 </a>
               </div>
             </div>
 
-            <div className="overflow-hidden rounded-2xl shadow-xl ring-1 ring-slate-200">
-              <div className="aspect-video w-full">
+            <div className="overflow-hidden rounded-2xl h-full shadow-xl ring-1 ring-slate-200">
+              <div className="h-full aspect-video lg:aspect-auto">
                 <iframe
                   className="h-full w-full"
                   src="https://www.youtube.com/embed/d9Nsgidtak8"
@@ -115,8 +104,8 @@ export default function Home() {
 
         </section>
 
-        <section className="bg-slate-50 py-20">
-          <div className="mx-auto max-w-5xl px-6">
+        <section className=" rounded-2xl bg-slate-50 py-20  shadow-xl backdrop-blur ring-1 ring-white/10">
+          <div className="mx-auto  max-w-5xl px-6">
 
             {/* Header */}
             <div className="text-center mb-12">
@@ -129,43 +118,43 @@ export default function Home() {
             </div>
 
             {/* Mission Card */}
-            <div className="rounded-2xl bg-white p-8 md:p-12 shadow-xl ring-1 ring-slate-200">
+            <div className="rounded-2xl bg-gradient-to-br from-slate-900/90 to-slate-800/70 bg-white p-8 md:p-12 shadow-xl ring-1 ring-slate-200">
 
-              <h3 className="text-xl font-bold text-slate-900">
+              <h3 className="text-xl font-bold text-slate-200">
                 The Patriot Housing Project
               </h3>
 
-              <p className="mt-4 text-slate-600 leading-relaxed">
+              <p className="mt-4 text-slate-200 leading-relaxed">
                 Twelve years ago, Tri-County Veterans Support Network (TCVSN) was founded with one simple mission:
                 to connect struggling Veterans in the Charleston area with the local resources they need to rebuild their lives.
               </p>
 
-              <p className="mt-4 text-slate-600 leading-relaxed">
+              <p className="mt-4 text-slate-200 leading-relaxed">
                 Over the years, one truth has remained constant — too many of our nation’s heroes lack a safe, stable place
                 to call home. Through partnerships with local community organizations, TCVSN has already helped more than
-                <span className="font-semibold text-slate-900"> 7,000 Veterans </span>
+                <span className="font-semibold text-slate-200"> 7,000 Veterans </span>
                 secure housing, employment, benefits, and critical support.
               </p>
 
-              <p className="mt-4 text-slate-600 leading-relaxed">
+              <p className="mt-4 text-slate-200 leading-relaxed">
                 But this challenge extends far beyond Charleston. That’s why we launched the Patriot Housing Project —
                 a nationwide initiative providing homes, job training, and hope for Veterans in communities across America.
               </p>
 
-              <p className="mt-4 text-slate-600 leading-relaxed">
+              <p className="mt-4 text-slate-200 leading-relaxed">
                 Now, we’re calling on Patriots like you to stand up, step forward, and make a difference for the Veterans
                 in your community. Together, we can ensure that every Hero has a place to heal, rebuild, and thrive.
               </p>
 
               {/* CTA */}
               <div className="mt-8 text-center">
-                <p className="text-slate-700 font-medium">
+                <p className="text-slate-200 font-medium">
                   Want to bring this initiative to your community?
                 </p>
 
                 <a
                   href="mailto:info@tcvsn.org"
-                  className="mt-4 inline-block rounded-xl bg-red-600 px-6 py-3 font-semibold text-white hover:bg-red-700"
+                  className="mt-4 inline-block rounded-xl bg-blue-800 px-6 py-3 font-semibold text-white hover:bg-blue-900"
                 >
                   Contact Us
                 </a>
