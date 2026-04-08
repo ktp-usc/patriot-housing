@@ -23,7 +23,17 @@ export async function postJSON<T>(url: string, body: unknown): Promise<T> {
         body: JSON.stringify(body)
     });
 
-    const data: unknown = await res.json();
+    const text = await res.text();
+    let data: unknown = null;
+
+    try {
+        data = text ? JSON.parse(text) : null;
+    } catch {
+        if (!res.ok) {
+            throw new Error(`request_failed_${res.status}`);
+        }
+        throw new Error("invalid_json_response");
+    }
 
     const message =
         isRecord(data) && typeof data.message === 'string'
