@@ -65,7 +65,10 @@ export default function NewsletterPage() {
 
             <main className="mx-auto w-full max-w-4xl px-6 py-10 md:px-10 md:py-14">
                 <section className="rounded-2xl border border-slate-200 bg-white p-8 md:p-12">
-                    <h1 className="text-3xl font-bold tracking-tight md:text-5xl">Newsletter</h1>
+                    <section className = "relative overflow-hidden px-4 py-20 bg-[url('/images/newsletterImage.jpg')] bg-cover bg-center rounded-2xl drop-shadow-amber-100 ">
+                        <div className="absolute inset-0 bg-blue-900/50"></div>
+                        <h1 className= "relative z-10 mx-auto max-w-3xl text-centerbg-white/20 backdrop-blur-md px-8 py-6 rounded-2xl border border-white/30 shadow-lg text-3xl font-bold tracking-tight md:text-5xl text-white">Newsletter</h1>
+                    </section>
                     <p className="mt-4 max-w-2xl text-base text-slate-600 md:text-lg">
                         Get Patriot Housing updates by email.
                     </p>
