@@ -29,12 +29,12 @@ export default function Home() {
             <p className="theme-hero-copy mx-auto mt-5 max-w-3xl text-lg md:text-xl text-white">
               Providing safe, affordable housing to veterans and their families, because those who served deserve a place to call home.
             </p>
-            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-              <Button size="lg" variant="secondary">
-                Learn More <ArrowRight className="h-4 w-4" />
-              </Button>
-              <Button size="lg">Apply for Housing</Button>
-            </div>
+            {/*<div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">*/}
+            {/*  <Button size="lg" variant="secondary">*/}
+            {/*    Learn More <ArrowRight className="h-4 w-4" />*/}
+            {/*  </Button>*/}
+            {/*  <Button size="lg">Apply for Housing</Button>*/}
+            {/*</div>*/}
           </div>
         </section>
 
@@ -66,16 +66,16 @@ export default function Home() {
               </p>
 
               <div className="mt-6 flex gap-4">
-                <a
-                  href="/apply"
-                  className="rounded-xl bg-red-600 px-5 py-3 font-semibold text-white hover:bg-red-700"
-                >
-                  Apply for Housing
-                </a>
+                {/*<a*/}
+                {/*  href="/apply"*/}
+                {/*  className="rounded-xl bg-red-600 px-5 py-3 font-semibold text-white hover:bg-red-700"*/}
+                {/*>*/}
+                {/*  Apply for Housing*/}
+                {/*</a>*/}
 
                 <a
                   href="/donate"
-                  className="rounded-xl border border-white/20 px-5 py-3 font-semibold text-white hover:bg-white/10"
+                  className="rounded-xl border bg-red-600 border-white/20 px-5 py-3 font-semibold text-white hover:bg-white/10"
                 >
                   Donate Now
                 </a>
