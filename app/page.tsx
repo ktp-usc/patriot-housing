@@ -29,12 +29,7 @@ export default function Home() {
             <p className="theme-hero-copy mx-auto mt-5 max-w-3xl text-lg md:text-xl text-white">
               Providing safe, affordable housing to veterans and their families, because those who served deserve a place to call home.
             </p>
-            {/*<div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">*/}
-            {/*  <Button size="lg" variant="secondary">*/}
-            {/*    Learn More <ArrowRight className="h-4 w-4" />*/}
-            {/*  </Button>*/}
-            {/*  <Button size="lg">Apply for Housing</Button>*/}
-            {/*</div>*/}
+
           </div>
         </section>
 
@@ -48,8 +43,8 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="grid items-center gap-10 lg:grid-cols-2">
-            <div className="rounded-2xl bg-gradient-to-br from-slate-900/90 to-slate-800/70 p-8 text-white shadow-xl backdrop-blur ring-1 ring-white/10">
+          <div className="grid items-stretch gap-10 lg:grid-cols-2">
+            <div className="rounded-2xl h-full flex flex-col bg-gradient-to-br from-slate-900/90 to-slate-800/70 p-8 text-white shadow-xl backdrop-blur ring-1 ring-white/10">
               <h3 className="text-2xl font-semibold text-white">
                 Changing the Story for Veterans
               </h3>
@@ -66,12 +61,7 @@ export default function Home() {
               </p>
 
               <div className="mt-6 flex gap-4">
-                {/*<a*/}
-                {/*  href="/apply"*/}
-                {/*  className="rounded-xl bg-red-600 px-5 py-3 font-semibold text-white hover:bg-red-700"*/}
-                {/*>*/}
-                {/*  Apply for Housing*/}
-                {/*</a>*/}
+
 
                 <a
                   href="/donate"
@@ -82,8 +72,8 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="overflow-hidden rounded-2xl shadow-xl ring-1 ring-slate-200">
-              <div className="aspect-video w-full">
+            <div className="overflow-hidden rounded-2xl h-full shadow-xl ring-1 ring-slate-200">
+              <div className="h-full aspect-video lg:aspect-auto">
                 <iframe
                   className="h-full w-full"
                   src="https://www.youtube.com/embed/d9Nsgidtak8"
