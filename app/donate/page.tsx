@@ -6,14 +6,14 @@ import Footer from "@/components/footer";
 
 export default function DonatePage() {
     return (
-        <div className="min-h-screen bg-white text-slate-900">
+        <div className="min-h-screen bg-slate-50 text-slate-900">
             <Header />
 
             <main className="mx-auto w-full max-w-6xl px-6 py-16 md:px-10 lg:py-24">
                 <div className="flex flex-col gap-12">
 
                     {/* Top section: Ways to Volunteer */}
-                    <section className="rounded-2xl border border-slate-200 bg-white p-8 md:p-12 shadow-sm">
+                    <section className="rounded-2xl border border-slate-200 bg-slate-50 p-8 md:p-12 shadow-sm">
                         <div className="relative flex items-center justify-center overflow-hidden rounded-2xl bg-[url('/images/backgroundImage.jpg')] bg-cover bg-center px-4 py-20">
                             <div className="absolute inset-0 bg-blue-900/50"></div>
 
