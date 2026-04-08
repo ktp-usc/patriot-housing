@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Logo from "@/components/images/PatriotHousingLogo.png"
 import Link from "next/link";
-import { BookOpen, Heart, Home, Mail, Users } from "lucide-react";
+import { Heart, Home, Mail, Users } from "lucide-react";
 export default function Footer() {
   return (
     <footer className="border-slate-200 bg-slate-900">
@@ -30,8 +30,6 @@ export default function Footer() {
             <Heart size={16} />Donate</Link>
           <Link href="/volunteer" className="inline-flex items-center gap-2 px-2 hover:text-blue-400 transition">
             <Users size={16} />Volunteer</Link>
-          <Link href="/resources" className="inline-flex items-center gap-2 px-2 hover:text-blue-400 transition">
-            <BookOpen size={16} />Resources</Link>
         </section>
         <section className="text-1xl font-bold text-slate-400">
           <p className="text-xl font-bold text-slate-400">
