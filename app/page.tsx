@@ -100,13 +100,13 @@ export default function Home() {
           <Carousel>
             <CarouselContent>
               <CarouselItem>
-                <Image src={Carousel1} alt="Carousel Image 1" className="block h-80 w-full rounded-2xl object-cover" />
+                <Image src={Carousel1} alt="Carousel Image 1" className="block h-100 w-full rounded-2xl object-cover" />
               </CarouselItem>
               <CarouselItem>
-                <Image src={Carousel2} alt="Carousel Image 2" className="block h-80 w-full rounded-2xl object-cover" />
+                <Image src={Carousel2} alt="Carousel Image 2" className="block h-100 w-full rounded-2xl object-cover" />
               </CarouselItem>
               <CarouselItem>
-                <Image src={Carousel3} alt="Carousel Image 3" className="block h-80 w-full rounded-2xl object-cover" />
+                <Image src={Carousel3} alt="Carousel Image 3" className="block h-100 w-full rounded-2xl object-cover" />
               </CarouselItem>
             </CarouselContent>
             <CarouselPrevious />
