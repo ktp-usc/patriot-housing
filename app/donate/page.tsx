@@ -2,6 +2,7 @@ import Image from "next/image";
 import guy from "@/components/images/Guy.png";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/header";
+import {ArrowRight} from "lucide-react";
 import Footer from "@/components/footer";
 
 export default function DonatePage() {
@@ -59,3 +60,4 @@ export default function DonatePage() {
         </div>
     );
 }
+

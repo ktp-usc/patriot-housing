@@ -1,52 +1,58 @@
-import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { NextResponse } from "next/server";
+import { ensureProcessEnvFromDotEnv, getServerEnv } from "@/lib/env";
 
-export async function POST(request: NextRequest) {
-    try {
-        const body = await request.json();
-        const { firstName, lastName, email } = body;
+type NewsletterPayload = {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+};
 
-        if (!firstName || !lastName || !email) {
-            return NextResponse.json(
-                { success: false, message: "First name, last name, and email are required." },
-                { status: 400 }
-            );
-        }
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            return NextResponse.json(
-                { success: false, message: "Please provide a valid email address." },
-                { status: 400 }
-            );
-        }
+export async function POST(request: Request) {
+  try {
+    ensureProcessEnvFromDotEnv(["DATABASE_URL"]);
 
-        await prisma.newsletterSubscriber.create({
-            data: {
-                firstName: firstName.trim(),
-                lastName: lastName.trim(),
-                email: email.trim().toLowerCase(),
-            },
-        });
-
-        return NextResponse.json({ success: true, message: "Successfully subscribed!" });
-    } catch (error: unknown) {
-        if (
-            typeof error === "object" &&
-            error !== null &&
-            "code" in error &&
-            (error as { code: string }).code === "P2002"
-        ) {
-            return NextResponse.json(
-                { success: false, message: "This email is already subscribed." },
-                { status: 409 }
-            );
-        }
-
-        console.error("Newsletter subscribe error:", error);
-        return NextResponse.json(
-            { success: false, message: "Something went wrong. Please try again." },
-            { status: 500 }
-        );
+    const databaseUrl = getServerEnv("DATABASE_URL");
+    if (!databaseUrl || !/^postgres(ql)?:\/\//i.test(databaseUrl)) {
+      return NextResponse.json(
+        { message: "DATABASE_URL must use postgres:// or postgresql:// in .env." },
+        { status: 500 },
+      );
     }
+
+    const { prisma } = await import("@/lib/prisma");
+    const body = (await request.json()) as NewsletterPayload;
+
+    const firstName = body.firstName?.trim();
+    const lastName = body.lastName?.trim();
+    const email = body.email?.trim().toLowerCase();
+
+    if (!firstName || !lastName || !email) {
+      return NextResponse.json(
+        { message: "Missing required fields." },
+        { status: 400 },
+      );
+    }
+
+    if (!EMAIL_REGEX.test(email)) {
+      return NextResponse.json(
+        { message: "Invalid email format." },
+        { status: 400 },
+      );
+    }
+
+    await prisma.newsletterSubscriber.upsert({
+      where: { email },
+      update: { firstName, lastName },
+      create: { firstName, lastName, email },
+    });
+
+    return NextResponse.json({ success: true });
+  } catch {
+    return NextResponse.json(
+      { message: "Unable to save newsletter signup. Verify your database connection settings." },
+      { status: 500 },
+    );
+  }
 }
