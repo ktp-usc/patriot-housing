@@ -5,12 +5,12 @@ import { House, Users, Heart, Mail, BookOpen,} from "lucide-react";
 
 export default function Header() {
   return (
-    <header className="border-b border-slate-200 bg-white">
+    <header className="border-b border-slate-800 bg-black">
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-2 md:px-8">
-        <span className="text-base font-bold text-slate-900">
+        <span className="text-base font-bold text-white">
           <Link href="/" className="inline-flex items-center gap-2 px-2 hover:underline hover:decoration-red-600 hover:underline-offset-6 decoration-3"><Image src={Logo} alt="Patriot Housing Logo" className="size-6" />Patriot Housing</Link>
         </span>
-        <nav className="text-md font-bold text-slate-600">
+        <nav className="text-md font-bold text-slate-100">
           <div className="mx-auto flex flex-col gap-5 px-6 py-4 md:flex-row md:items-center md:justify-between md:px-10">
             <Link href="/" className="inline-flex items-center gap-1 px-2 hover:underline hover:decoration-red-600 hover:underline-offset-6 decoration-3"><House className="size-4" />Home</Link>
             <Link href="/newsletter" className="inline-flex items-center gap-1 px-2 hover:underline hover:decoration-red-600 hover:underline-offset-6 decoration-3"><Mail className="size-4" />Newsletter</Link>
