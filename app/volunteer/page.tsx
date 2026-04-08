@@ -9,12 +9,19 @@ export default function WaysToVolunteer() {
 
             <main className="mx-auto w-full max-w-7xl px-6 py-10 md:px-10 md:py-15">
                 <section className="rounded-2xl border border-slate-200 bg-white p-8 md:p-12">
-                    <h1 className="mt-3 text-3xl font-bold tracking-tight md:text-5xl">
-                        Ways To Volunteer
-                    </h1>
-                    <p className="mt-4 max-w-2xl text-base text-slate-600 md:text-lg">
-                        Insert Description Here
-                    </p>
+
+                    <div className="relative overflow-hidden px-4 py-20 bg-[url('/images/volunteerImage3.png')] bg-cover bg-center rounded-2xl flex items-center justify-center">
+
+                        {/* overlay */}
+                        <div className="absolute inset-0 bg-blue-900/50"></div>
+
+                        {/* centered content */}
+                        <h1 className="relative z-10 mx-auto max-w-3xl text-center bg-white/20 backdrop-blur-md px-8 py-6 rounded-2xl border border-white/30 shadow-lg text-3xl font-bold tracking-tight md:text-5xl text-white">
+                            Ways to Volunteer
+                        </h1>
+
+                    </div>
+
                 </section>
 
                 <section className="mt-8 grid gap-6 md:grid-cols-3">
