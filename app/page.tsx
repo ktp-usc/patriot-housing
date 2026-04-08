@@ -9,10 +9,10 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white text-slate-900">
+    <div className="min-h-screen bg-slate-50 text-slate-900">
       <Header />
 
-      <main className="mx-auto w-full max-w-7xl px-6 py-10 md:px-10 md:py-15 flex flex-col space-y-4">
+      <main className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-6 py-10 md:px-10 md:py-15">
 
         <section className="relative overflow-hidden px-4 py-20 bg-[url('/images/backgroundImage.jpg')] bg-cover bg-center rounded-2xl drop-shadow-amber-100 ">
           {/* Overlay (tint) */}
@@ -32,18 +32,19 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-6xl px-6 py-16">
-          <div className="mb-12 text-center">
-            <p className="text-sm font-semibold uppercase tracking-widest text-red-600">
+        <section className="rounded-2xl bg-slate-50 py-20 shadow-xl backdrop-blur ring-1 ring-white/10">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="mb-12 text-center">
+              <p className="text-sm font-semibold uppercase tracking-widest text-red-600">
               Watch Our Story
-            </p>
-            <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
-              See the impact of Patriot Housing
-            </h2>
-          </div>
+              </p>
+              <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
+                See the impact of Patriot Housing
+              </h2>
+            </div>
 
-          <div className="grid items-stretch gap-10 lg:grid-cols-2">
-            <div className="rounded-2xl h-full flex flex-col bg-gradient-to-br from-slate-900/90 to-slate-800/70 p-8 text-white shadow-xl backdrop-blur ring-1 ring-white/10">
+            <div className="grid items-stretch gap-10 lg:grid-cols-2">
+              <div className="rounded-2xl h-full flex flex-col bg-gradient-to-br from-slate-900/90 to-slate-800/70 p-8 text-white shadow-xl backdrop-blur ring-1 ring-white/10">
               <h3 className="text-2xl font-semibold text-white">
                 Changing the Story for Veterans
               </h3>
@@ -71,7 +72,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="overflow-hidden rounded-2xl h-full shadow-xl ring-1 ring-slate-200">
+              <div className="overflow-hidden rounded-2xl h-full shadow-xl ring-1 ring-slate-200">
               <div className="h-full aspect-video lg:aspect-auto">
                 <iframe
                   className="h-full w-full"
@@ -82,10 +83,11 @@ export default function Home() {
                 ></iframe>
               </div>
             </div>
+              </div>
           </div>
         </section>
 
-        <section className="rounded-2xl border border-slate-200 bg-white p-8 md:p-13">
+        <section className="rounded-2xl bg-slate-50 p-8 shadow-xl backdrop-blur ring-1 ring-white/10 md:p-13">
           <Carousel>
             <CarouselContent>
               <CarouselItem>

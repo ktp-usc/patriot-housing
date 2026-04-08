@@ -295,11 +295,11 @@ export default async function DatabasePage({
 	const csvDataUri = subscribers.length > 0 ? createCsvDataUri(subscribers) : "";
 
 	return (
-		<div className="min-h-screen bg-white text-slate-900">
+		<div className="min-h-screen bg-slate-50 text-slate-900">
 			<Header />
 
 			<main className="mx-auto w-full max-w-7xl px-6 py-10 md:px-10 md:py-14">
-				<section className="rounded-2xl border border-slate-200 bg-white p-8 md:p-12">
+				<section className="rounded-2xl border border-slate-200 bg-slate-50 p-8 md:p-12">
 					<h1 className="text-3xl font-bold tracking-tight md:text-5xl">Database</h1>
 
 					{!hasPasswordConfigured ? (

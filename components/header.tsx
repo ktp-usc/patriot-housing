@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/components/images/PatriotHousingLogo.png"
-import { House, Users, Heart, Mail, BookOpen,} from "lucide-react";
+import { House, Users, Heart, Mail } from "lucide-react";
 
 export default function Header() {
   return (
@@ -16,7 +16,6 @@ export default function Header() {
             <Link href="/newsletter" className="inline-flex items-center gap-1 px-2 hover:underline hover:decoration-red-600 hover:underline-offset-6 decoration-3"><Mail className="size-4" />Newsletter</Link>
             <Link href="/donate" className="inline-flex items-center gap-1 px-2 hover:underline hover:decoration-red-600 hover:underline-offset-6 decoration-3"><Heart className="size-4" />Donate</Link>
             <Link href="/volunteer" className="inline-flex items-center gap-1 px-2 hover:underline hover:decoration-red-600 hover:underline-offset-6 decoration-3"><Users className="size-4" />Volunteer</Link>
-            <Link href="/resources" className="inline-flex items-center gap-1 px-2 hover:underline hover:decoration-red-600 hover:underline-offset-6 decoration-3"><BookOpen className="size-4" />Resources</Link>
           </div>
         </nav>
       </div>
