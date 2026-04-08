@@ -36,58 +36,60 @@ export default function Home() {
               <Button size="lg">Apply for Housing</Button>
             </div>
           </div>
-        </section><section class="mx-auto max-w-6xl px-6 py-16">
-          <div class="mb-12 text-center">
-            <p class="text-sm font-semibold uppercase tracking-widest text-red-600">
+        </section>
+
+        <section className="mx-auto max-w-6xl px-6 py-16">
+          <div className="mb-12 text-center">
+            <p className="text-sm font-semibold uppercase tracking-widest text-red-600">
               Watch Our Story
             </p>
-            <h2 class="text-3xl font-bold text-slate-900 sm:text-4xl">
+            <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
               See the impact of Patriot Housing
             </h2>
           </div>
 
-          <div class="grid items-center gap-10 lg:grid-cols-2">
-            <div class="rounded-2xl bg-gradient-to-br from-slate-900/90 to-slate-800/70 p-8 text-white shadow-xl backdrop-blur ring-1 ring-white/10">
-              <h3 class="text-2xl font-semibold text-white">
+          <div className="grid items-center gap-10 lg:grid-cols-2">
+            <div className="rounded-2xl bg-gradient-to-br from-slate-900/90 to-slate-800/70 p-8 text-white shadow-xl backdrop-blur ring-1 ring-white/10">
+              <h3 className="text-2xl font-semibold text-white">
                 Changing the Story for Veterans
               </h3>
 
-              <p class="mt-4 leading-relaxed text-slate-200">
+              <p className="mt-4 leading-relaxed text-slate-200">
                 At Patriot Housing Project, we’re working to change that narrative.
                 Our mission is simple: provide housing, jobs, and hope for veterans
                 who have fallen on hard times.
               </p>
 
-              <p class="mt-4 leading-relaxed text-slate-200">
+              <p className="mt-4 leading-relaxed text-slate-200">
                 We’re building pathways to permanent housing and self-sufficiency —
                 one hero, one home, one community at a time.
               </p>
 
-              <div class="mt-6 flex gap-4">
+              <div className="mt-6 flex gap-4">
                 <a
                   href="/apply"
-                  class="rounded-xl bg-red-600 px-5 py-3 font-semibold text-white hover:bg-red-700"
+                  className="rounded-xl bg-red-600 px-5 py-3 font-semibold text-white hover:bg-red-700"
                 >
                   Apply for Housing
                 </a>
 
                 <a
                   href="/donate"
-                  class="rounded-xl border border-white/20 px-5 py-3 font-semibold text-white hover:bg-white/10"
+                  className="rounded-xl border border-white/20 px-5 py-3 font-semibold text-white hover:bg-white/10"
                 >
                   Donate Now
                 </a>
               </div>
             </div>
 
-            <div class="overflow-hidden rounded-2xl shadow-xl ring-1 ring-slate-200">
-              <div class="aspect-video w-full">
+            <div className="overflow-hidden rounded-2xl shadow-xl ring-1 ring-slate-200">
+              <div className="aspect-video w-full">
                 <iframe
-                  class="h-full w-full"
+                  className="h-full w-full"
                   src="https://www.youtube.com/embed/d9Nsgidtak8"
                   title="Patriot Housing video"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
+                  allowFullScreen
                 ></iframe>
               </div>
             </div>
