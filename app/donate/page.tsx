@@ -10,10 +10,10 @@ export default async function DonatePage() {
     const donationContent = await client.fetch(DONATION_CONTENT_QUERY);
 
     return (
-        <div className="min-h-screen overflow-x-hidden bg-slate-50 text-slate-900">
+        <div className="flex min-h-screen flex-col overflow-x-hidden bg-slate-50 text-slate-900">
             <Header />
 
-            <main className="mx-auto w-full max-w-6xl px-4 py-6 sm:px-6 sm:py-8 md:px-10 md:py-12">
+            <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-6 sm:px-6 sm:py-8 md:px-10 md:py-12">
                 <div className="flex flex-col gap-8 sm:gap-10 md:gap-12">
 
                     {/* HERO */}

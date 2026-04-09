@@ -7,10 +7,10 @@ export default async function WaysToVolunteer() {
     const opportunities = await client.fetch(VOLUNTEER_OPPORTUNITIES_QUERY);
 
     return (
-        <div className="min-h-screen bg-slate-50 text-slate-900">
+        <div className="flex min-h-screen flex-col overflow-x-hidden bg-slate-50 text-slate-900">
             <Header />
 
-            <main className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8 md:px-10 md:py-12">
+            <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-6 sm:px-6 sm:py-8 md:px-10 md:py-12">
                 <section className="relative flex min-h-[18rem] items-center justify-center overflow-hidden rounded-2xl border border-slate-200 bg-[url('/images/volunteerImage3.png')] bg-cover bg-center px-4 shadow-sm sm:min-h-[20rem] sm:px-6 md:min-h-[24rem] md:px-8">
 
                     {/* overlay */}

@@ -5,10 +5,10 @@ import { Heart, Home, Mail, Users } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-900 text-white">
-      <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 py-8 sm:px-6 md:grid-cols-3 md:px-10">
-        <section className="flex flex-col">
-          <div className="flex items-center gap-3 sm:gap-4">
+    <footer className="mt-auto bg-slate-900 text-white">
+      <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 py-8 sm:px-6 md:grid-cols-3 md:gap-10 md:px-10 md:py-10">
+        <section className="flex flex-col items-center text-center md:items-start md:text-left">
+          <div className="flex items-center justify-center gap-3 sm:gap-4 md:justify-start">
             <Image
               src={Logo}
               alt="Patriot Housing Logo"
@@ -23,10 +23,10 @@ export default function Footer() {
           </p>
         </section>
 
-        <section className="flex flex-col gap-2 md:items-center md:justify-center md:pt-2">
+        <section className="mx-auto flex w-full max-w-sm flex-col gap-2 md:items-center md:justify-center md:pt-2">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 rounded-md px-2 py-2 transition hover:text-blue-400"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-md px-3 py-2.5 text-center transition hover:bg-white/5 hover:text-blue-400 md:w-auto md:px-2 md:py-2"
           >
             <Home className="h-4 w-4 shrink-0" />
             <span>Home</span>
@@ -34,7 +34,7 @@ export default function Footer() {
 
           <Link
             href="/newsletter"
-            className="inline-flex items-center gap-2 rounded-md px-2 py-2 transition hover:text-blue-400"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-md px-3 py-2.5 text-center transition hover:bg-white/5 hover:text-blue-400 md:w-auto md:px-2 md:py-2"
           >
             <Mail className="h-4 w-4 shrink-0" />
             <span>Newsletter</span>
@@ -42,7 +42,7 @@ export default function Footer() {
 
           <Link
             href="/donate"
-            className="inline-flex items-center gap-2 rounded-md px-2 py-2 transition hover:text-blue-400"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-md px-3 py-2.5 text-center transition hover:bg-white/5 hover:text-blue-400 md:w-auto md:px-2 md:py-2"
           >
             <Heart className="h-4 w-4 shrink-0" />
             <span>Donate</span>
@@ -50,14 +50,14 @@ export default function Footer() {
 
           <Link
             href="/volunteer"
-            className="inline-flex items-center gap-2 rounded-md px-2 py-2 transition hover:text-blue-400"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-md px-3 py-2.5 text-center transition hover:bg-white/5 hover:text-blue-400 md:w-auto md:px-2 md:py-2"
           >
             <Users className="h-4 w-4 shrink-0" />
             <span>Volunteer</span>
           </Link>
         </section>
 
-        <section className="text-slate-400">
+        <section className="text-center text-slate-400 md:text-left">
           <p className="text-lg font-bold sm:text-xl">Contact:</p>
           <a
             className="mt-1 block break-words text-sm text-white sm:text-base"

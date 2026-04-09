@@ -60,10 +60,10 @@ export default function NewsletterPage() {
     }
 
     return (
-        <div className="min-h-screen overflow-x-hidden bg-slate-50 text-slate-900">
+        <div className="flex min-h-screen flex-col overflow-x-hidden bg-slate-50 text-slate-900">
             <Header />
 
-            <main className="mx-auto w-full max-w-4xl px-4 py-6 sm:px-6 sm:py-8 md:px-10 md:py-14">
+            <main className="mx-auto w-full max-w-4xl flex-1 px-4 py-6 sm:px-6 sm:py-8 md:px-10 md:py-14">
                 <section className="rounded-2xl border border-slate-200 bg-slate-50 p-4 sm:p-6 md:p-8 md:p-12">
                     <section className="relative overflow-hidden rounded-2xl bg-[url('/images/newsletterImage.jpg')] bg-cover bg-center px-4 py-14 sm:px-6 sm:py-16 md:px-8 md:py-20">
                         <div className="absolute inset-0 bg-blue-900/50"></div>
