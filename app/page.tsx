@@ -17,7 +17,7 @@ export default async function Home() {
       <Header />
 
       <main className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-6 sm:gap-8 sm:px-6 sm:py-8 md:px-10 md:py-12">
-        <section className="relative overflow-hidden rounded-2xl bg-[url('/images/backgroundImage.jpg')] bg-cover bg-center px-4 py-14 sm:px-6 sm:py-16 md:px-8 md:py-20">
+        <section className="relative flex min-h-[18rem] items-center justify-center overflow-hidden rounded-2xl bg-[url('/images/backgroundImage.jpg')] bg-cover bg-center px-4 sm:min-h-[20rem] sm:px-6 md:min-h-[24rem] md:px-8">
           <div className="absolute inset-0 bg-blue-900/50" />
 
           <div
