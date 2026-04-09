@@ -7,7 +7,7 @@ import Carousel3 from "@/components/images/Carousel3.jpg";
 import Image from "next/image";
 import { client } from "@/sanity/lib/client";
 import { HOMEPAGE_QUERY } from "@/sanity/lib/queries";
-import PageBanner from "@/components/PageBanner";
+
 
 export default async function Home() {
   const homepage = await client.fetch(HOMEPAGE_QUERY);
