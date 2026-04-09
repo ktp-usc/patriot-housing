@@ -295,12 +295,15 @@ export default async function DatabasePage({
 	const csvDataUri = subscribers.length > 0 ? createCsvDataUri(subscribers) : "";
 
 	return (
-		<div className="min-h-screen bg-slate-50 text-slate-900">
+		<div className="min-h-screen overflow-x-hidden bg-slate-50 text-slate-900">
 			<Header />
 
-			<main className="mx-auto w-full max-w-7xl px-6 py-10 md:px-10 md:py-14">
-				<section className="rounded-2xl border border-slate-200 bg-slate-50 p-8 md:p-12">
-					<h1 className="text-3xl font-bold tracking-tight md:text-5xl">Database</h1>
+			<main className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8 md:px-10 md:py-14">
+				<section className="rounded-2xl border border-slate-200 bg-slate-50 p-4 sm:p-6 md:p-8 md:p-12">
+
+					<h1 className="text-2xl font-bold tracking-tight sm:text-3xl md:text-5xl">
+						Database
+					</h1>
 
 					{!hasPasswordConfigured ? (
 						<p className="mt-4 rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
@@ -312,35 +315,44 @@ export default async function DatabasePage({
 						</p>
 					) : (
 						<>
-							<p className="mt-4 max-w-3xl text-base text-slate-600 md:text-lg">
+							<p className="mt-4 max-w-3xl text-sm text-slate-600 sm:text-base md:text-lg">
 								Write a message and send it to every newsletter subscriber saved in Neon.
 							</p>
 
-							<DatabaseEmailComposer
-								access={access}
-								sendAction={sendNewsletterAction}
-								status={status}
-								total={total}
-								sent={sent}
-								failed={failed}
-								message={message}
-							/>
+							<div className="mt-6 sm:mt-8">
+								<DatabaseEmailComposer
+									access={access}
+									sendAction={sendNewsletterAction}
+									status={status}
+									total={total}
+									sent={sent}
+									failed={failed}
+									message={message}
+								/>
+							</div>
 
-							<div className="mt-10 rounded-xl border border-slate-200 bg-slate-50 p-6">
-								<div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-									<h2 className="text-lg font-semibold text-slate-900">Newsletter Subscribers</h2>
+							<div className="mt-8 rounded-xl border border-slate-200 bg-slate-50 p-4 sm:mt-10 sm:p-6">
+
+								{/* Header Row */}
+								<div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+									<h2 className="text-base font-semibold text-slate-900 sm:text-lg">
+										Newsletter Subscribers
+									</h2>
+
 									{csvDataUri && (
 										<a
 											href={csvDataUri}
 											download="newsletter-subscribers.csv"
-											className="inline-flex w-fit items-center rounded-md bg-slate-800 px-3 py-2 text-xs font-semibold text-white transition hover:bg-slate-700"
+											className="inline-flex w-full items-center justify-center rounded-md bg-slate-800 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-700 sm:w-fit"
 										>
 											Download CSV
 										</a>
 									)}
 								</div>
 
-								<p className="mt-2 text-sm text-slate-600">Total subscribers: {subscribers.length}</p>
+								<p className="mt-2 text-sm text-slate-600">
+									Total subscribers: {subscribers.length}
+								</p>
 
 								{tableError && (
 									<p className="mt-3 rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
@@ -348,36 +360,54 @@ export default async function DatabasePage({
 									</p>
 								)}
 
-								<div className="mt-4 overflow-x-auto rounded-md border border-slate-200 bg-white">
-									<table className="min-w-full text-left text-sm">
-										<thead className="bg-slate-100 text-slate-700">
-											<tr>
-												<th className="px-4 py-3 font-semibold">First Name</th>
-												<th className="px-4 py-3 font-semibold">Last Name</th>
-												<th className="px-4 py-3 font-semibold">Email</th>
-												<th className="px-4 py-3 font-semibold">Joined</th>
-											</tr>
-										</thead>
-										<tbody>
-											{subscribers.length === 0 ? (
+								{/* Table */}
+								<div className="mt-4 overflow-hidden rounded-md border border-slate-200 bg-white">
+									<div className="overflow-x-auto">
+										<table className="min-w-[640px] w-full text-left text-sm">
+											<thead className="bg-slate-100 text-slate-700">
 												<tr>
-													<td className="px-4 py-4 text-slate-500" colSpan={4}>
-														No subscribers found.
-													</td>
+													<th className="px-3 py-3 font-semibold sm:px-4">First Name</th>
+													<th className="px-3 py-3 font-semibold sm:px-4">Last Name</th>
+													<th className="px-3 py-3 font-semibold sm:px-4">Email</th>
+													<th className="px-3 py-3 font-semibold sm:px-4">Joined</th>
 												</tr>
-											) : (
-												subscribers.map((subscriber) => (
-													<tr key={subscriber.email} className="border-t border-slate-100">
-														<td className="px-4 py-3">{subscriber.firstName}</td>
-														<td className="px-4 py-3">{subscriber.lastName}</td>
-														<td className="px-4 py-3">{subscriber.email}</td>
-														<td className="px-4 py-3">{subscriber.createdAt.toLocaleString()}</td>
+											</thead>
+
+											<tbody>
+												{subscribers.length === 0 ? (
+													<tr>
+														<td className="px-3 py-4 text-slate-500 sm:px-4" colSpan={4}>
+															No subscribers found.
+														</td>
 													</tr>
-												))
-											)}
-										</tbody>
-									</table>
+												) : (
+													subscribers.map((subscriber) => (
+														<tr key={subscriber.email} className="border-t border-slate-100">
+															<td className="px-3 py-3 sm:px-4">{subscriber.firstName}</td>
+															<td className="px-3 py-3 sm:px-4">{subscriber.lastName}</td>
+
+															{/* FIX: prevent overflow */}
+															<td className="px-3 py-3 sm:px-4 break-words">
+																{subscriber.email}
+															</td>
+
+															{/* FIX: keep date readable */}
+															<td className="px-3 py-3 sm:px-4 whitespace-nowrap">
+																{subscriber.createdAt.toLocaleString()}
+															</td>
+														</tr>
+													))
+												)}
+											</tbody>
+										</table>
+									</div>
 								</div>
+
+								{/* Mobile hint */}
+								<p className="mt-3 text-xs text-slate-500 sm:hidden">
+									Swipe sideways to view the full table.
+								</p>
+
 							</div>
 						</>
 					)}

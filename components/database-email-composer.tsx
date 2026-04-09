@@ -103,7 +103,7 @@ export default function DatabaseEmailComposer({
   }
 
   return (
-    <form action={sendAction} className="mt-8 grid gap-5" noValidate>
+    <form action={sendAction} className="mt-6 grid gap-4 sm:mt-8 sm:gap-5" noValidate>
       <input type="hidden" name="access" value={access} />
       <input type="hidden" name="content" value={plainTextContent} />
       <input type="hidden" name="htmlContent" value={htmlContent} />
@@ -115,19 +115,21 @@ export default function DatabaseEmailComposer({
           name="subject"
           type="text"
           defaultValue="Patriot Housing Update"
-          className="rounded-lg border border-slate-300 px-4 py-3 text-base outline-none transition focus:border-slate-600"
+          className="w-full rounded-lg border border-slate-300 px-4 py-3 text-base outline-none transition focus:border-slate-600"
           required
         />
       </label>
 
       <div className="grid gap-2 text-sm font-medium text-slate-700">
         <span>Email Content (you can paste images directly)</span>
+
         <div className="relative">
           {htmlContent.trim().length === 0 && (
-            <span className="pointer-events-none absolute left-4 top-3 text-sm text-slate-400">
+            <span className="pointer-events-none absolute left-4 top-3 right-4 text-sm leading-relaxed text-slate-400">
               Write your newsletter update here, then paste image screenshots directly into the box.
             </span>
           )}
+
           <div
             ref={editorRef}
             contentEditable
@@ -135,18 +137,18 @@ export default function DatabaseEmailComposer({
             onInput={syncEditorHtml}
             onBlur={syncEditorHtml}
             onPaste={handlePaste}
-            className="min-h-[260px] w-full rounded-lg border border-slate-300 px-4 py-3 text-base font-normal outline-none transition focus:border-slate-600"
+            className="min-h-[220px] w-full rounded-lg border border-slate-300 px-4 py-3 text-base font-normal outline-none transition focus:border-slate-600 sm:min-h-[260px]"
           />
         </div>
       </div>
 
-      <div className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-600">
+      <div className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm leading-relaxed text-slate-600">
         Brevo free tier has daily send limits. Large lists may require multiple sends across days.
       </div>
 
       <button
         type="submit"
-        className="inline-flex w-fit items-center rounded-lg bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-700"
+        className="inline-flex w-full items-center justify-center rounded-lg bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-700 sm:w-fit"
       >
         Send To All Subscribers
       </button>
@@ -156,8 +158,11 @@ export default function DatabaseEmailComposer({
           <p>
             {message || "Send complete."} Total: {total || "0"}, Sent: {sent || "0"}, Failed: {failed || "0"}.
           </p>
+
           {Number(failed || "0") > 0 && (
-            <p className="mt-2 text-amber-700">Some batches failed due to Brevo limits or API errors.</p>
+            <p className="mt-2 text-amber-700">
+              Some batches failed due to Brevo limits or API errors.
+            </p>
           )}
         </div>
       )}
