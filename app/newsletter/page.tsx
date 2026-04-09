@@ -60,21 +60,27 @@ export default function NewsletterPage() {
     }
 
     return (
-        <div className="min-h-screen bg-slate-50 text-slate-900">
+        <div className="min-h-screen overflow-x-hidden bg-slate-50 text-slate-900">
             <Header />
 
-            <main className="mx-auto w-full max-w-4xl px-6 py-10 md:px-10 md:py-14">
-                <section className="rounded-2xl border border-slate-200 bg-slate-50 p-8 md:p-12">
-                    <section className = "relative overflow-hidden px-4 py-20 bg-[url('/images/newsletterImage.jpg')] bg-cover bg-center rounded-2xl drop-shadow-amber-100 ">
+            <main className="mx-auto w-full max-w-4xl px-4 py-6 sm:px-6 sm:py-8 md:px-10 md:py-14">
+                <section className="rounded-2xl border border-slate-200 bg-slate-50 p-4 sm:p-6 md:p-8 md:p-12">
+                    <section className="relative overflow-hidden rounded-2xl bg-[url('/images/newsletterImage.jpg')] bg-cover bg-center px-4 py-14 sm:px-6 sm:py-16 md:px-8 md:py-20">
                         <div className="absolute inset-0 bg-blue-900/50"></div>
-                        <h1 className= "relative z-10 mx-auto max-w-3xl text-centerbg-white/20 backdrop-blur-md px-8 py-6 rounded-2xl border border-white/30 shadow-lg text-3xl font-bold tracking-tight md:text-5xl text-white">Newsletter</h1>
+
+                        <div className="relative z-10 mx-auto max-w-3xl rounded-2xl border border-white/30 bg-white/20 px-4 py-5 text-center shadow-lg backdrop-blur-md sm:px-6 sm:py-6 md:px-8">
+                            <h1 className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-5xl">
+                                Newsletter
+                            </h1>
+                        </div>
                     </section>
-                    <p className="mt-4 max-w-2xl text-base text-slate-600 md:text-lg">
+
+                    <p className="mt-4 max-w-2xl text-sm text-slate-600 sm:text-base md:text-lg">
                         Get Patriot Housing updates by email.
                     </p>
 
-                    <form onSubmit={handleNewsletterSubmit} className="mt-8 grid gap-5" noValidate>
-                        <div className="grid gap-5 md:grid-cols-2">
+                    <form onSubmit={handleNewsletterSubmit} className="mt-6 grid gap-4 sm:mt-8 sm:gap-5" noValidate>
+                        <div className="grid gap-4 sm:gap-5 md:grid-cols-2">
                             <label className="grid gap-2 text-sm font-medium text-slate-700" htmlFor="firstName">
                                 First Name
                                 <input
@@ -83,8 +89,10 @@ export default function NewsletterPage() {
                                     type="text"
                                     autoComplete="given-name"
                                     value={formState.firstName}
-                                    onChange={(event) => setFormState((prev) => ({ ...prev, firstName: event.target.value }))}
-                                    className="rounded-lg border border-slate-300 px-4 py-3 text-base outline-none transition focus:border-slate-600"
+                                    onChange={(event) =>
+                                        setFormState((prev) => ({ ...prev, firstName: event.target.value }))
+                                    }
+                                    className="w-full rounded-lg border border-slate-300 px-4 py-3 text-base outline-none transition focus:border-slate-600"
                                     required
                                 />
                             </label>
@@ -97,8 +105,10 @@ export default function NewsletterPage() {
                                     type="text"
                                     autoComplete="family-name"
                                     value={formState.lastName}
-                                    onChange={(event) => setFormState((prev) => ({ ...prev, lastName: event.target.value }))}
-                                    className="rounded-lg border border-slate-300 px-4 py-3 text-base outline-none transition focus:border-slate-600"
+                                    onChange={(event) =>
+                                        setFormState((prev) => ({ ...prev, lastName: event.target.value }))
+                                    }
+                                    className="w-full rounded-lg border border-slate-300 px-4 py-3 text-base outline-none transition focus:border-slate-600"
                                     required
                                 />
                             </label>
@@ -112,8 +122,10 @@ export default function NewsletterPage() {
                                 type="email"
                                 autoComplete="email"
                                 value={formState.email}
-                                onChange={(event) => setFormState((prev) => ({ ...prev, email: event.target.value }))}
-                                className="rounded-lg border border-slate-300 px-4 py-3 text-base outline-none transition focus:border-slate-600"
+                                onChange={(event) =>
+                                    setFormState((prev) => ({ ...prev, email: event.target.value }))
+                                }
+                                className="w-full rounded-lg border border-slate-300 px-4 py-3 text-base outline-none transition focus:border-slate-600"
                                 required
                             />
                         </label>
@@ -121,7 +133,7 @@ export default function NewsletterPage() {
                         <button
                             type="submit"
                             disabled={isSubmitting}
-                            className="inline-flex w-fit items-center rounded-lg bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:bg-slate-400"
+                            className="inline-flex w-full items-center justify-center rounded-lg bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:bg-slate-400 sm:w-fit"
                         >
                             {isSubmitting ? "Submitting..." : "Join Newsletter"}
                         </button>
@@ -139,24 +151,31 @@ export default function NewsletterPage() {
                         )}
                     </form>
 
-                    <section className="mt-10 border-t border-slate-200 pt-6">
-                        <h2 className="text-xs font-semibold uppercase tracking-wide text-slate-500">Database Access</h2>
+                    <section className="mt-8 border-t border-slate-200 pt-6 sm:mt-10">
+                        <h2 className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                            Database Access
+                        </h2>
+
                         <p className="mt-1 text-xs text-slate-500">
                             Enter the password to open the database page.
                         </p>
 
-                        <form onSubmit={handleDatabaseAccess} className="mt-3 flex flex-col gap-2 md:flex-row md:items-center">
+                        <form
+                            onSubmit={handleDatabaseAccess}
+                            className="mt-3 flex flex-col gap-3 sm:gap-2 md:flex-row md:items-center"
+                        >
                             <input
                                 type="password"
                                 value={databasePasswordInput}
                                 onChange={(event) => setDatabasePasswordInput(event.target.value)}
-                                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none transition focus:border-slate-600 md:max-w-[220px]"
+                                className="w-full rounded-md border border-slate-300 px-3 py-2.5 text-sm outline-none transition focus:border-slate-600 md:max-w-[220px]"
                                 placeholder="Password"
                                 required
                             />
+
                             <button
                                 type="submit"
-                                className="inline-flex w-fit items-center rounded-md bg-slate-800 px-3 py-2 text-xs font-semibold text-white transition hover:bg-slate-700"
+                                className="inline-flex w-full items-center justify-center rounded-md bg-slate-800 px-3 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-700 md:w-fit"
                             >
                                 Open Database
                             </button>
