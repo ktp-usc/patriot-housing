@@ -61,9 +61,9 @@ export default function Footer() {
           <p className="text-lg font-bold sm:text-xl">Contact:</p>
           <a
             className="mt-1 block break-words text-sm text-white sm:text-base"
-            href="mailto:info@patriothousing.org"
+            href="mailto:info@tcvsn.org"
           >
-            info@patriothousing.org
+            info@tcvsn.org
           </a>
 
           <p className="mt-4 text-lg font-bold sm:text-xl">Address:</p>
