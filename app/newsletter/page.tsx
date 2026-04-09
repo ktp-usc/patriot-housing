@@ -1,7 +1,6 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { useRouter } from "next/navigation";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { postJSON } from "@/client/api/jsonutils";
@@ -19,13 +18,10 @@ const initialFormState: NewsletterFormState = {
 };
 
 export default function NewsletterPage() {
-    const router = useRouter();
     const [formState, setFormState] = useState<NewsletterFormState>(initialFormState);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitError, setSubmitError] = useState("");
     const [isSubmitted, setIsSubmitted] = useState(false);
-    const [databasePasswordInput, setDatabasePasswordInput] = useState("");
-    const [databaseError, setDatabaseError] = useState("");
 
     async function handleNewsletterSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -43,20 +39,6 @@ export default function NewsletterPage() {
         } finally {
             setIsSubmitting(false);
         }
-    }
-
-    function handleDatabaseAccess(event: FormEvent<HTMLFormElement>) {
-        event.preventDefault();
-        setDatabaseError("");
-
-        const normalizedPasswordInput = databasePasswordInput.trim();
-
-        if (!normalizedPasswordInput) {
-            setDatabaseError("Password is required.");
-            return;
-        }
-
-        router.push(`/database?access=${encodeURIComponent(normalizedPasswordInput)}`);
     }
 
     return (
@@ -151,46 +133,15 @@ export default function NewsletterPage() {
                         )}
                     </form>
 
-                    <section className="mt-8 border-t border-slate-200 pt-6 sm:mt-10">
-                        <h2 className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-                            Database Access
-                        </h2>
-
-                        <p className="mt-1 text-xs text-slate-500">
-                            Enter the password to open the database page.
-                        </p>
-
-                        <form
-                            onSubmit={handleDatabaseAccess}
-                            className="mt-3 flex flex-col gap-3 sm:gap-2 md:flex-row md:items-center"
-                        >
-                            <input
-                                type="password"
-                                value={databasePasswordInput}
-                                onChange={(event) => setDatabasePasswordInput(event.target.value)}
-                                className="w-full rounded-md border border-slate-300 px-3 py-2.5 text-sm outline-none transition focus:border-slate-600 md:max-w-[220px]"
-                                placeholder="Password"
-                                required
-                            />
-
-                            <button
-                                type="submit"
-                                className="inline-flex w-full items-center justify-center rounded-md bg-slate-800 px-3 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-700 md:w-fit"
-                            >
-                                Open Database
-                            </button>
-                        </form>
-
-                        {databaseError && (
-                            <p className="mt-3 rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
-                                {databaseError}
-                            </p>
-                        )}
-                    </section>
                 </section>
             </main>
 
-            <Footer />
+            {/* 
+                The shared footer is reused across the site, but the database shortcut should only
+                appear on the newsletter page. Passing this prop keeps the footer generic everywhere
+                else while opting this page into the quieter access row that now lives at the bottom.
+            */}
+            <Footer showDatabaseAccess />
         </div>
     );
 }
