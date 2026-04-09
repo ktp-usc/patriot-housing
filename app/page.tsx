@@ -6,8 +6,11 @@ import Carousel1 from "@/components/images/Carousel1.jpg";
 import Carousel2 from "@/components/images/Carousel2.jpg";
 import Carousel3 from "@/components/images/Carousel3.jpg";
 import Image from "next/image";
+import { client } from "@/sanity/lib/client";
+import { HOMEPAGE_QUERY } from "@/sanity/lib/queries";
 
-export default function Home() {
+export default async function Home() {
+  const homepage = await client.fetch(HOMEPAGE_QUERY);
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
       <Header />
@@ -23,10 +26,10 @@ export default function Home() {
                 px-8 py-6 rounded-2xl
                 border border-white/30 shadow-lg">
             <h1 className="text-3xl text-white font-bold md:text-5xl drop-shadow-md ">
-              Welcome to Patriot Housing
+              {homepage?.heroTitle || "Welcome to Patriot Housing"}
             </h1>
             <p className="theme-hero-copy mx-auto mt-5 max-w-3xl text-lg md:text-xl text-white">
-              Providing safe, affordable housing to veterans and their families, because those who served deserve a place to call home.
+              {homepage?.heroSubtitle || "Providing safe, affordable housing to veterans and their families, because those who served deserve a place to call home."}
             </p>
 
           </div>
@@ -36,54 +39,54 @@ export default function Home() {
           <div className="mx-auto max-w-6xl px-6">
             <div className="mb-12 text-center">
               <p className="text-sm font-semibold uppercase tracking-widest text-red-600">
-              Watch Our Story
+                {homepage?.storyTitle || "Watch Our Story"}
               </p>
               <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
-                See the impact of Patriot Housing
+                {homepage?.storyHeading || "See the impact of Patriot Housing"}
               </h2>
             </div>
 
             <div className="grid items-stretch gap-10 lg:grid-cols-2">
               <div className="rounded-2xl h-full flex flex-col bg-gradient-to-br from-slate-900/90 to-slate-800/70 p-8 text-white shadow-xl backdrop-blur ring-1 ring-white/10">
-              <h3 className="text-2xl font-semibold text-white">
-                Changing the Story for Veterans
-              </h3>
+                <h3 className="text-2xl font-semibold text-white">
+                  Changing the Story for Veterans
+                </h3>
 
-              <p className="mt-4 leading-relaxed text-slate-200">
-                At Patriot Housing Project, we’re working to change that narrative.
-                Our mission is simple: provide housing, jobs, and hope for veterans
-                who have fallen on hard times.
-              </p>
+                <p className="mt-4 leading-relaxed text-slate-200">
+                  At Patriot Housing Project, we’re working to change that narrative.
+                  Our mission is simple: provide housing, jobs, and hope for veterans
+                  who have fallen on hard times.
+                </p>
 
-              <p className="mt-4 leading-relaxed text-slate-200">
-                We’re building pathways to permanent housing and self-sufficiency —
-                one hero, one home, one community at a time.
-              </p>
+                <p className="mt-4 leading-relaxed text-slate-200">
+                  We’re building pathways to permanent housing and self-sufficiency —
+                  one hero, one home, one community at a time.
+                </p>
 
-              <div className="mt-6 flex gap-4">
+                <div className="mt-6 flex gap-4">
 
 
-                <a
-                  href="/donate"
-                  className="rounded-xl border bg-blue-800 border-white/20 px-5 py-3 font-semibold text-white hover:bg-blue-900"
-                >
-                  Donate Now
-                </a>
+                  <a
+                    href="/donate"
+                    className="rounded-xl border bg-blue-800 border-white/20 px-5 py-3 font-semibold text-white hover:bg-blue-900"
+                  >
+                    Donate Now
+                  </a>
+                </div>
               </div>
-            </div>
 
               <div className="overflow-hidden rounded-2xl h-full shadow-xl ring-1 ring-slate-200">
-              <div className="h-full aspect-video lg:aspect-auto">
-                <iframe
-                  className="h-full w-full"
-                  src="https://www.youtube.com/embed/d9Nsgidtak8"
-                  title="Patriot Housing video"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
+                <div className="h-full aspect-video lg:aspect-auto">
+                  <iframe
+                    className="h-full w-full"
+                    src={homepage?.youtubeUrl || "https://www.youtube.com/embed/d9Nsgidtak8"}
+                    title="Patriot Housing video"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
               </div>
             </div>
-              </div>
           </div>
         </section>
 
@@ -112,10 +115,10 @@ export default function Home() {
             {/* Header */}
             <div className="text-center mb-12">
               <p className="text-sm font-semibold uppercase tracking-widest text-red-600">
-                Our Mission
+                {homepage?.missionTitle || "Our Mission"}
               </p>
               <h2 className="mt-2 text-3xl font-bold text-slate-900 sm:text-4xl">
-                Answering the Call — Bringing Hope Home for Our Heroes
+                {homepage?.missionHeading || "Answering the Call — Bringing Hope Home for Our Heroes"}
               </h2>
             </div>
 
@@ -151,11 +154,11 @@ export default function Home() {
               {/* CTA */}
               <div className="mt-8 text-center">
                 <p className="text-slate-200 font-medium">
-                  Want to bring this initiative to your community?
+                  {homepage?.contactText || "Want to bring this initiative to your community?"}
                 </p>
 
                 <a
-                  href="mailto:info@tcvsn.org"
+                  href={`mailto:${homepage?.contactEmail || "info@tcvsn.org"}`}
                   className="mt-4 inline-block rounded-xl bg-blue-800 px-6 py-3 font-semibold text-white hover:bg-blue-900"
                 >
                   Contact Us

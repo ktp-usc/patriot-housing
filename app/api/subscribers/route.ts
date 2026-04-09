@@ -1,7 +1,17 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
 
 export async function GET() {
+    // Check if DATABASE_URL is available (for production/Vercel)
+    if (!process.env.DATABASE_URL) {
+        return NextResponse.json(
+            { error: "Database not configured for this environment." },
+            { status: 503 }
+        );
+    }
+
+    // Dynamically import Prisma only when database is available
+    const { prisma } = await import("@/lib/prisma");
+
     try {
         const subscribers = await prisma.newsletterSubscriber.findMany({
             orderBy: { createdAt: "desc" },
