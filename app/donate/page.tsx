@@ -10,41 +10,50 @@ export default async function DonatePage() {
     const donationContent = await client.fetch(DONATION_CONTENT_QUERY);
 
     return (
-        <div className="min-h-screen bg-slate-50 text-slate-900">
+        <div className="min-h-screen overflow-x-hidden bg-slate-50 text-slate-900">
             <Header />
 
-            <main className="mx-auto w-full max-w-6xl px-6 py-16 md:px-10 lg:py-24">
-                <div className="flex flex-col gap-12">
+            <main className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-10 md:px-10 md:py-16 lg:py-20">
+                <div className="flex flex-col gap-8 sm:gap-10 md:gap-12">
 
-                    {/* Top section: Ways to Volunteer */}
-                    <section className="rounded-2xl border border-slate-200 bg-slate-50 p-8 md:p-12 shadow-sm">
-                        <div className="relative flex items-center justify-center overflow-hidden rounded-2xl bg-[url('/images/backgroundImage.jpg')] bg-cover bg-center px-4 py-20">
+                    {/* HERO */}
+                    <section className="rounded-2xl border border-slate-200 bg-slate-50 p-4 sm:p-6 md:p-8 md:p-12 shadow-sm">
+                        <div className="relative flex items-center justify-center overflow-hidden rounded-2xl bg-[url('/images/backgroundImage.jpg')] bg-cover bg-center px-4 py-14 sm:px-6 sm:py-16 md:px-8 md:py-20">
                             <div className="absolute inset-0 bg-blue-900/50"></div>
 
-                            <h1 className="relative z-10 mx-auto max-w-3xl rounded-2xl border border-white/30 bg-white/20 px-8 py-6 text-center text-3xl font-bold tracking-tight text-white shadow-lg backdrop-blur-md md:text-5xl">
-                                {donationContent?.title || "Donate"}
-                            </h1>
+                            <div className="relative z-10 mx-auto max-w-3xl rounded-2xl border border-white/30 bg-white/20 px-4 py-5 text-center shadow-lg backdrop-blur-md sm:px-6 sm:py-6 md:px-8">
+                                <h1 className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-5xl">
+                                    {donationContent?.title || "Donate"}
+                                </h1>
+                            </div>
                         </div>
                     </section>
 
-                    {/* Bottom row: Image + Text */}
+                    {/* CONTENT SECTION */}
                     <section className="overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-950 shadow-2xl">
-                        <div className="grid items-stretch lg:grid-cols-[minmax(320px,0.95fr)_1.05fr]">
-                            <div className="flex items-center justify-center bg-[url('/cameo_background.png')] bg-cover bg-center p-8 md:p-10">
+                        <div className="grid items-stretch gap-0 lg:grid-cols-[minmax(320px,0.95fr)_1.05fr]">
+
+                            {/* IMAGE */}
+                            <div className="flex items-center justify-center bg-[url('/cameo_background.png')] bg-cover bg-center p-6 sm:p-8 md:p-10">
                                 <Image
                                     src={guy}
                                     alt="Veteran"
                                     width={400}
                                     height={450}
                                     priority
-                                    className="h-auto w-full max-w-sm rounded-[1.5rem] object-contain drop-shadow-2xl"
+                                    className="h-auto w-full max-w-xs sm:max-w-sm rounded-[1.5rem] object-contain drop-shadow-2xl"
                                 />
                             </div>
 
-                            <div className="flex items-center bg-gradient-to-br from-slate-900 via-slate-900 to-slate-800 p-8 text-white md:p-10 lg:p-12">
-                                <div className="space-y-8">
+                            {/* TEXT */}
+                            <div className="flex items-center bg-gradient-to-br from-slate-900 via-slate-900 to-slate-800 p-5 text-white sm:p-6 md:p-8 lg:p-12">
+                                <div className="space-y-6 sm:space-y-8">
+
                                     {donationContent?.mainMessage?.map((block: any, index: number) => (
-                                        <p key={index} className="text-2xl font-semibold leading-relaxed md:text-[1.85rem]">
+                                        <p
+                                            key={index}
+                                            className="text-lg font-semibold leading-relaxed sm:text-xl md:text-2xl"
+                                        >
                                             {block.children?.[0]?.text}
                                         </p>
                                     ))}
@@ -54,12 +63,17 @@ export default async function DonatePage() {
                                             href={donationContent?.buttonUrl || "https://givebutter.com/c/XRhwPV"}
                                             target="_blank"
                                             rel="noopener noreferrer"
+                                            className="w-full sm:w-auto"
                                         >
-                                            <Button size="lg" className="bg-blue-600 px-6 text-base hover:bg-blue-700">
+                                            <Button
+                                                size="lg"
+                                                className="w-full bg-blue-600 px-6 text-sm hover:bg-blue-700 sm:w-auto sm:text-base"
+                                            >
                                                 {donationContent?.buttonText || "Support a Veteran"}
                                             </Button>
                                         </a>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -72,4 +86,3 @@ export default async function DonatePage() {
         </div>
     );
 }
-
