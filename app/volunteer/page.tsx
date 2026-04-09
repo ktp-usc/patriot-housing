@@ -7,23 +7,19 @@ export default async function WaysToVolunteer() {
     const opportunities = await client.fetch(VOLUNTEER_OPPORTUNITIES_QUERY);
 
     return (
-        <div className="min-h-screen bg-slate-50 text-slate-900">
+        <div className="flex min-h-screen flex-col overflow-x-hidden bg-slate-50 text-slate-900">
             <Header />
 
-            <main className="mx-auto w-full max-w-7xl px-6 py-10 md:px-10 md:py-15">
-                <section className="rounded-2xl border border-slate-200 bg-slate-50 p-8 md:p-12">
+            <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-6 sm:px-6 sm:py-8 md:px-10 md:py-12">
+                <section className="relative flex min-h-[18rem] items-center justify-center overflow-hidden rounded-2xl border border-slate-200 bg-[url('/images/volunteerImage3.png')] bg-cover bg-center px-4 shadow-sm sm:min-h-[20rem] sm:px-6 md:min-h-[24rem] md:px-8">
 
-                    <div className="relative overflow-hidden rounded-2xl bg-[url('/images/volunteerImage3.png')] bg-cover bg-center px-4 py-14 sm:px-6 sm:py-16 md:px-8 md:py-20 flex items-center justify-center">
+                    {/* overlay */}
+                    <div className="absolute inset-0 bg-blue-900/50"></div>
 
-                        {/* overlay */}
-                        <div className="absolute inset-0 bg-blue-900/50"></div>
-
-                        {/* centered content */}
-                        <h1 className="relative z-10 mx-auto max-w-3xl text-center bg-white/20 backdrop-blur-md px-8 py-6 rounded-2xl border border-white/30 shadow-lg text-3xl font-bold tracking-tight md:text-5xl text-white">
-                            Ways to Volunteer
-                        </h1>
-
-                    </div>
+                    {/* centered content */}
+                    <h1 className="relative z-10 mx-auto max-w-3xl rounded-2xl border border-white/30 bg-white/20 px-8 py-6 text-center text-3xl font-bold tracking-tight text-white shadow-lg backdrop-blur-md md:text-5xl">
+                        Ways to Volunteer
+                    </h1>
 
                 </section>
 
