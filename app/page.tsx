@@ -77,10 +77,10 @@ export default async function Home() {
                 </div>
               </div>
 
-              <div className="h-full overflow-hidden rounded-2xl shadow-xl ring-1 ring-slate-200">
+              <div className="h-full overflow-hidden rounded-2xl bg-slate-950 shadow-xl ring-1 ring-slate-200">
                 <div className="aspect-video w-full">
                   <iframe
-                    className="h-full w-full"
+                    className="block h-full w-full"
                     src={homepage?.youtubeUrl || "https://www.youtube.com/embed/d9Nsgidtak8"}
                     title="Patriot Housing video"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
