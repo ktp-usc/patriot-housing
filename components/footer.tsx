@@ -32,7 +32,7 @@ export default function Footer({ showDatabaseAccess = false }: FooterProps) {
         </section>
 
         <section className="mx-auto flex w-full max-w-sm flex-col gap-2 md:items-center md:justify-center md:pt-2">
-          <p className="w-full text-center text-lg font-bold sm:text-xl md:w-52 md:text-left">
+          <p className="w-full pl-3 text-left text-lg font-bold text-slate-400 sm:text-xl md:w-52">
             Quick Links
           </p>
 
