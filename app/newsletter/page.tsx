@@ -135,6 +135,7 @@ export default function NewsletterPage() {
                 </section>
             </main>
 
+        
             <Footer />
         </div>
     );
