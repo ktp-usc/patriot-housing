@@ -136,12 +136,8 @@ export default function NewsletterPage() {
                 </section>
             </main>
 
-            {/* 
-                The shared footer is reused across the site, but the database shortcut should only
-                appear on the newsletter page. Passing this prop keeps the footer generic everywhere
-                else while opting this page into the quieter access row that now lives at the bottom.
-            */}
-            <Footer showDatabaseAccess />
+        
+            <Footer />
         </div>
     );
 }
