@@ -31,10 +31,10 @@ export default function Footer({ showDatabaseAccess = false }: FooterProps) {
           </p>
         </section>
 
-        <section className="mx-auto flex w-full max-w-sm flex-col gap-2 md:max-w-xs md:justify-center md:pt-2">
+        <section className="mx-auto flex w-full max-w-sm flex-col gap-2 md:items-center md:justify-center md:pt-2">
           <Link
             href="/"
-            className="inline-flex w-full items-center justify-start gap-2 rounded-md px-3 py-2.5 text-left transition hover:bg-white/5 hover:text-blue-400"
+            className="inline-flex w-full items-center justify-start gap-2 rounded-md px-3 py-2.5 text-left transition hover:bg-white/5 hover:text-blue-400 md:w-52"
           >
             <Home className="h-4 w-4 shrink-0" />
             <span>Home</span>
@@ -42,7 +42,7 @@ export default function Footer({ showDatabaseAccess = false }: FooterProps) {
 
           <Link
             href="/newsletter"
-            className="inline-flex w-full items-center justify-start gap-2 rounded-md px-3 py-2.5 text-left transition hover:bg-white/5 hover:text-blue-400"
+            className="inline-flex w-full items-center justify-start gap-2 rounded-md px-3 py-2.5 text-left transition hover:bg-white/5 hover:text-blue-400 md:w-52"
           >
             <Mail className="h-4 w-4 shrink-0" />
             <span>Newsletter</span>
@@ -50,7 +50,7 @@ export default function Footer({ showDatabaseAccess = false }: FooterProps) {
 
           <Link
             href="/donate"
-            className="inline-flex w-full items-center justify-start gap-2 rounded-md px-3 py-2.5 text-left transition hover:bg-white/5 hover:text-blue-400"
+            className="inline-flex w-full items-center justify-start gap-2 rounded-md px-3 py-2.5 text-left transition hover:bg-white/5 hover:text-blue-400 md:w-52"
           >
             <Heart className="h-4 w-4 shrink-0" />
             <span>Donate</span>
@@ -58,7 +58,7 @@ export default function Footer({ showDatabaseAccess = false }: FooterProps) {
 
           <Link
             href="/volunteer"
-            className="inline-flex w-full items-center justify-start gap-2 rounded-md px-3 py-2.5 text-left transition hover:bg-white/5 hover:text-blue-400"
+            className="inline-flex w-full items-center justify-start gap-2 rounded-md px-3 py-2.5 text-left transition hover:bg-white/5 hover:text-blue-400 md:w-52"
           >
             <Users className="h-4 w-4 shrink-0" />
             <span>Volunteer</span>
