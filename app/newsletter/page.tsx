@@ -22,6 +22,8 @@ export default function NewsletterPage() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitError, setSubmitError] = useState("");
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [databasePasswordInput, setDatabasePasswordInput] = useState("");
+    const [databaseError, setDatabaseError] = useState("");
 
     async function handleNewsletterSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -39,6 +41,20 @@ export default function NewsletterPage() {
         } finally {
             setIsSubmitting(false);
         }
+    }
+
+    function handleDatabaseAccess(event: FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        setDatabaseError("");
+
+        const normalizedPasswordInput = databasePasswordInput.trim();
+
+        if (!normalizedPasswordInput) {
+            setDatabaseError("Password is required.");
+            return;
+        }
+
+        router.push(`/database?access=${encodeURIComponent(normalizedPasswordInput)}`);
     }
 
     return (
@@ -115,7 +131,7 @@ export default function NewsletterPage() {
                         <button
                             type="submit"
                             disabled={isSubmitting}
-                            className="inline-flex w-full items-center justify-center rounded-lg bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:bg-slate-400 sm:w-fit"
+                            className="inline-flex w-fit items-center rounded-lg bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:bg-slate-400"
                         >
                             {isSubmitting ? "Submitting..." : "Join Newsletter"}
                         </button>
@@ -132,6 +148,36 @@ export default function NewsletterPage() {
                             </p>
                         )}
                     </form>
+
+                    <section className="mt-10 border-t border-slate-200 pt-6">
+                        <h2 className="text-xs font-semibold uppercase tracking-wide text-slate-500">Database Access</h2>
+                        <p className="mt-1 text-xs text-slate-500">
+                            Enter the password to open the database page.
+                        </p>
+
+                        <form onSubmit={handleDatabaseAccess} className="mt-3 flex flex-col gap-2 md:flex-row md:items-center">
+                            <input
+                                type="password"
+                                value={databasePasswordInput}
+                                onChange={(event) => setDatabasePasswordInput(event.target.value)}
+                                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none transition focus:border-slate-600 md:max-w-[220px]"
+                                placeholder="Password"
+                                required
+                            />
+                            <button
+                                type="submit"
+                                className="inline-flex w-fit items-center rounded-md bg-slate-800 px-3 py-2 text-xs font-semibold text-white transition hover:bg-slate-700"
+                            >
+                                Open Database
+                            </button>
+                        </form>
+
+                        {databaseError && (
+                            <p className="mt-3 rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+                                {databaseError}
+                            </p>
+                        )}
+                    </section>
                 </section>
             </main>
 
