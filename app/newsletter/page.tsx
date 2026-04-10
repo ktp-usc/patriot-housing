@@ -132,7 +132,6 @@ export default function NewsletterPage() {
                             </p>
                         )}
                     </form>
-
                 </section>
             </main>
 
