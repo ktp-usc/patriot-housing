@@ -22,7 +22,7 @@ export const VOLUNTEER_OPPORTUNITIES_QUERY = defineQuery(`
     title,
     description,
     linkText,
-    linkUrl
+    emailSubject
   }
 `)
 

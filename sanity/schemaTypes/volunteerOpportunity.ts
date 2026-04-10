@@ -24,6 +24,13 @@ export const volunteerOpportunity = defineType({
             description: 'Text for the link (e.g., "Weekday and Saturday Dates")'
         }),
         defineField({
+            name: 'emailSubject',
+            title: 'Email Subject',
+            type: 'string',
+            description: 'Subject line used when this volunteer link is clicked',
+            validation: Rule => Rule.required()
+        }),
+        defineField({
             name: 'linkUrl',
             title: 'Link URL',
             type: 'string',

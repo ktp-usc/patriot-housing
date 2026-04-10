@@ -5,6 +5,7 @@ import { VOLUNTEER_OPPORTUNITIES_QUERY } from "@/sanity/lib/queries";
 
 export default async function WaysToVolunteer() {
     const opportunities = await client.fetch(VOLUNTEER_OPPORTUNITIES_QUERY);
+    const opportunityEmail = "info@patriothousing.org";
 
     return (
         <div className="flex min-h-screen flex-col overflow-x-hidden bg-slate-50 text-slate-900">
@@ -24,13 +25,18 @@ export default async function WaysToVolunteer() {
                 </section>
 
                 <section className="mt-8 grid gap-6 md:grid-cols-3">
-                    {opportunities?.map((opportunity: any) => (
-                        <div key={opportunity._id} className="rounded-xl border border-slate-200 bg-slate-50 p-6 space-y-2 items-center">
-                            <h2 className="text-red-800 font-bold">{opportunity.title}</h2>
-                            <p>{opportunity.description}</p>
-                            <a className="text-slate-900 underline" href={opportunity.linkUrl}>{opportunity.linkText}</a>
-                        </div>
-                    ))}
+                    {opportunities?.map((opportunity: any) => {
+                        const mailtoHref = `mailto:${opportunityEmail}?subject=${encodeURIComponent(opportunity.title)}`;
+
+                        return (
+                            <div key={opportunity._id}
+                                 className="rounded-xl border border-slate-200 bg-slate-50 p-6 space-y-2 items-center">
+                                <h2 className="text-red-800 font-bold">{opportunity.title}</h2>
+                                <p>{opportunity.description}</p>
+                                <a className="text-slate-900 underline" href={mailtoHref}>{opportunity.linkText}</a>
+                            </div>
+                        );
+                    })}
                 </section>
 
             </main>
