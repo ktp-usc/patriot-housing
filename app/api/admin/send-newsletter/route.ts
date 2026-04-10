@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { sessionStore, imageStore } from "@/lib/admin-store";
 import { ensureProcessEnvFromDotEnv, getServerEnv } from "@/lib/env";
 
-const BREVO_API_URL = "https://api.brevo.com/v3/smtp/email";
+const BREVO_API_URL = process.env.BREVO_API_URL;
 const DEFAULT_SENDER_NAME = "Patriot Housing Project";
 // Delay between individual sends to stay under Brevo rate limits
 const INTER_SEND_DELAY_MS = 250;
@@ -122,6 +122,11 @@ async function sendBrevoEmail(input: {
 	// Include inline image attachments if present
 	if (input.attachments.length > 0) {
 		payload.attachment = input.attachments;
+	}
+
+	if (!BREVO_API_URL) {
+		console.error("[send-newsletter] BREVO_API_URL is missing in environment variables");
+		return { ok: false, error: "BREVO_API_URL is missing" };
 	}
 
 	const response = await fetch(BREVO_API_URL, {

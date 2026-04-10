@@ -93,7 +93,7 @@ export default async function Home() {
         </section>
 
         <section className="rounded-2xl bg-slate-50 p-4 shadow-xl ring-1 ring-white/10 backdrop-blur sm:p-6 md:p-8">
-          <Carousel className="mx-auto w-full max-w-5xl">
+          <Carousel className="group mx-auto w-full max-w-5xl">
             <CarouselContent>
               <CarouselItem>
                 <div className="overflow-hidden rounded-2xl">
@@ -127,8 +127,8 @@ export default async function Home() {
               </CarouselItem>
             </CarouselContent>
 
-            <CarouselPrevious className="left-2 hidden sm:flex" />
-            <CarouselNext className="right-2 hidden sm:flex" />
+            <CarouselPrevious className="left-4 hidden size-12 border-white/0 bg-white/0 text-white/0 shadow-none transition-all duration-200 sm:flex sm:opacity-0 sm:group-hover:opacity-100 sm:group-hover:border-white/15 sm:group-hover:bg-slate-900/35 sm:group-hover:text-white/85 sm:focus-visible:opacity-100 sm:focus-visible:text-white hover:border-white/25 hover:bg-slate-900/65 hover:text-white focus-visible:border-white/25 focus-visible:bg-slate-900/65 [&_svg]:size-5" />
+            <CarouselNext className="right-4 hidden size-12 border-white/0 bg-white/0 text-white/0 shadow-none transition-all duration-200 sm:flex sm:opacity-0 sm:group-hover:opacity-100 sm:group-hover:border-white/15 sm:group-hover:bg-slate-900/35 sm:group-hover:text-white/85 sm:focus-visible:opacity-100 sm:focus-visible:text-white hover:border-white/25 hover:bg-slate-900/65 hover:text-white focus-visible:border-white/25 focus-visible:bg-slate-900/65 [&_svg]:size-5" />
           </Carousel>
         </section>
 
