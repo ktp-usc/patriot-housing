@@ -65,8 +65,7 @@ export default async function DonatePage() {
                                         >
                                             <Button
                                                 size="lg"
-                                                className="w-full bg-blue-600 px-6 text-sm hover:bg-blue-700 sm:w-auto sm:text-base"
-                                            >
+                                                className="w-full cursor-pointer bg-blue-600 px-6 text-sm hover:bg-blue-700 sm:w-auto sm:text-base"                                             >
                                                 {donationContent?.buttonText || "Support a Veteran"}
                                             </Button>
                                         </a>

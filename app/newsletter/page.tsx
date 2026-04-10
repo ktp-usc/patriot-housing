@@ -1,7 +1,6 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { useRouter } from "next/navigation";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { postJSON } from "@/client/api/jsonutils";
@@ -19,7 +18,6 @@ const initialFormState: NewsletterFormState = {
 };
 
 export default function NewsletterPage() {
-    const router = useRouter();
     const [formState, setFormState] = useState<NewsletterFormState>(initialFormState);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitError, setSubmitError] = useState("");
@@ -134,9 +132,11 @@ export default function NewsletterPage() {
                             </p>
                         )}
                     </form>
+
                 </section>
             </main>
 
+        
             <Footer />
         </div>
     );
