@@ -3,10 +3,7 @@ import Footer from "@/components/footer";
 import { redirect } from "next/navigation";
 import { ensureProcessEnvFromDotEnv, getServerEnv } from "@/lib/env";
 import DatabaseEmailComposer from "@/components/database-email-composer";
-
-type BrevoRecipient = {
-	email: string;
-};
+import { DEFAULT_SENDER_NAME, sendBrevoBatch } from "@/lib/brevo";
 
 type SubscriberRow = {
 	firstName: string;
@@ -23,9 +20,6 @@ type SearchParams = {
 	failed?: string | string[];
 	message?: string | string[];
 };
-
-const BREVO_API_URL = "https://api.brevo.com/v3/smtp/email";
-const DEFAULT_SENDER_NAME = "Patriot Housing Project";
 const DEFAULT_BATCH_SIZE = 100;
 
 function chunk<T>(items: T[], size: number): T[][] {
@@ -98,46 +92,6 @@ function createCsvDataUri(rows: SubscriberRow[]): string {
 	return `data:text/csv;charset=utf-8,${encodeURIComponent(withBom)}`;
 }
 
-async function sendBrevoBatch(input: {
-	apiKey: string;
-	senderEmail: string;
-	senderName: string;
-	recipients: BrevoRecipient[];
-	subject: string;
-	content: string;
-	htmlContent: string;
-}) {
-	const response = await fetch(BREVO_API_URL, {
-		method: "POST",
-		headers: {
-			accept: "application/json",
-			"api-key": input.apiKey,
-			"content-type": "application/json",
-		},
-		body: JSON.stringify({
-			sender: {
-				email: input.senderEmail,
-				name: input.senderName,
-			},
-			to: [
-				{
-					email: input.senderEmail,
-					name: input.senderName,
-				},
-			],
-			bcc: input.recipients,
-			subject: input.subject,
-			textContent: input.content,
-			htmlContent: input.htmlContent,
-		}),
-	});
-
-	if (!response.ok) {
-		const errorText = await response.text();
-		throw new Error(errorText || "brevo_send_failed");
-	}
-}
-
 async function sendNewsletterAction(formData: FormData) {
 	"use server";
 
@@ -203,7 +157,7 @@ async function sendNewsletterAction(formData: FormData) {
 		Number.parseInt(getServerEnv("BREVO_BATCH_SIZE") ?? `${DEFAULT_BATCH_SIZE}`, 10),
 	);
 
-	const recipientBatches = chunk<BrevoRecipient>(
+	const recipientBatches = chunk(
 		subscribers.map((subscriber: { email: string }) => ({ email: subscriber.email })),
 		batchSize,
 	);

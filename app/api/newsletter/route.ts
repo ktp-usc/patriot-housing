@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { ensureProcessEnvFromDotEnv, getServerEnv } from "@/lib/env";
+import { DEFAULT_SENDER_NAME, sendBrevoWelcomeEmail } from "@/lib/brevo";
 
 type NewsletterPayload = {
   firstName?: string;
@@ -42,11 +43,39 @@ export async function POST(request: Request) {
       );
     }
 
-    await prisma.newsletterSubscriber.upsert({
+    const existingSubscriber = await prisma.newsletterSubscriber.findUnique({
       where: { email },
-      update: { firstName, lastName },
-      create: { firstName, lastName, email },
+      select: { email: true },
     });
+
+    if (existingSubscriber) {
+      await prisma.newsletterSubscriber.update({
+        where: { email },
+        data: { firstName, lastName },
+      });
+    } else {
+      await prisma.newsletterSubscriber.create({
+        data: { firstName, lastName, email },
+      });
+
+      const apiKey = getServerEnv("BREVO_API_KEY");
+      const senderEmail = getServerEnv("BREVO_SENDER_EMAIL");
+      const senderName = getServerEnv("BREVO_SENDER_NAME") ?? DEFAULT_SENDER_NAME;
+
+      if (apiKey && senderEmail) {
+        try {
+          await sendBrevoWelcomeEmail({
+            apiKey,
+            senderEmail,
+            senderName,
+            recipientEmail: email,
+            firstName,
+          });
+        } catch (error) {
+          console.error("Welcome email send error:", error);
+        }
+      }
+    }
 
     return NextResponse.json({ success: true });
   } catch {
