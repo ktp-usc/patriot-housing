@@ -3,13 +3,24 @@ import guy from "@/components/images/Guy.png";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import { client } from "@/sanity/lib/client";
 import { DONATION_CONTENT_QUERY } from "@/sanity/lib/queries";
+import { sanityFetch } from "@/sanity/lib/live";
 
 export const dynamic = "force-dynamic";
 
+type PortableTextBlock = {
+    _key?: string;
+    children?: Array<{
+        _key?: string;
+        text?: string;
+    }>;
+};
+
 export default async function DonatePage() {
-    const donationContent = await client.fetch(DONATION_CONTENT_QUERY);
+    const { data: donationContent } = await sanityFetch({
+        query: DONATION_CONTENT_QUERY,
+        tags: ["donationContent"],
+    });
 
     return (
         <div className="flex min-h-screen flex-col overflow-x-hidden bg-slate-50 text-slate-900">
@@ -19,7 +30,7 @@ export default async function DonatePage() {
                 <div className="flex flex-col gap-8 sm:gap-10 md:gap-12">
 
                     {/* HERO */}
-                    <section className="relative flex min-h-[18rem] items-center justify-center overflow-hidden rounded-2xl border border-slate-200 bg-[url('/images/backgroundImage.jpg')] bg-cover bg-center px-4 shadow-sm sm:min-h-[20rem] sm:px-6 md:min-h-[24rem] md:px-8">
+                    <section className="relative flex min-h-72 items-center justify-center overflow-hidden rounded-2xl border border-slate-200 bg-[url('/images/backgroundImage.jpg')] bg-cover bg-center px-4 shadow-sm sm:min-h-80 sm:px-6 md:min-h-96 md:px-8">
                         <div className="absolute inset-0 bg-blue-900/50"></div>
 
                         <div className="relative z-10 mx-auto max-w-3xl rounded-2xl border border-white/30 bg-white/20 px-4 py-5 text-center shadow-lg backdrop-blur-md sm:px-6 sm:py-6 md:px-8">
@@ -46,12 +57,12 @@ export default async function DonatePage() {
                             </div>
 
                             {/* TEXT */}
-                            <div className="flex items-center bg-gradient-to-br from-slate-900 via-slate-900 to-slate-800 p-5 text-white sm:p-6 md:p-8 lg:p-12">
+                            <div className="flex items-center bg-linear-to-br from-slate-900 via-slate-900 to-slate-800 p-5 text-white sm:p-6 md:p-8 lg:p-12">
                                 <div className="space-y-6 sm:space-y-8">
 
-                                    {donationContent?.mainMessage?.map((block: any, index: number) => (
+                                    {donationContent?.mainMessage?.map((block: PortableTextBlock, index: number) => (
                                         <p
-                                            key={index}
+                                            key={block._key || index}
                                             className="text-lg font-semibold leading-relaxed sm:text-xl md:text-2xl"
                                         >
                                             {block.children?.[0]?.text}

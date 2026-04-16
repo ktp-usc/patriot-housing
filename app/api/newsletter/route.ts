@@ -62,11 +62,11 @@ export async function POST(request: Request) {
         let welcomeHtml = "";
 
         try {
-          const settings = await client.fetch('*[_type == "newsletterSettings"][0]');
+          const settings = await client.fetch('*[_type == "newsletterSettings"][0]', {}, { cache: "no-store" });
           if (settings && settings.welcomeSubject && settings.welcomeMessage) {
             welcomeSubject = settings.welcomeSubject;
             const rawHtml = toHTML(settings.welcomeMessage);
-            welcomeHtml = rawHtml.replace(/\{\{firstName\}\}/g, firstName ? firstName : "there");
+            welcomeHtml = rawHtml.replace(/\{\{firstName}}/g, firstName ? firstName : "there");
           } else {
             console.warn("Skipping welcome email: No Sanity configuration found.");
             return NextResponse.json({ success: true });
