@@ -9,7 +9,7 @@ import { client } from "@/sanity/lib/client";
 import { HOMEPAGE_QUERY } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
 
-
+export const revalidate = 60; // Revalidate this page every 60 seconds
 export default async function Home() {
   const homepage = await client.fetch(HOMEPAGE_QUERY);
 
