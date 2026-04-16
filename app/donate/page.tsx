@@ -6,6 +6,8 @@ import Footer from "@/components/footer";
 import { client } from "@/sanity/lib/client";
 import { DONATION_CONTENT_QUERY } from "@/sanity/lib/queries";
 
+export const dynamic = "force-dynamic";
+
 export default async function DonatePage() {
     const donationContent = await client.fetch(DONATION_CONTENT_QUERY);
 

@@ -4,6 +4,7 @@ export const HOMEPAGE_QUERY = defineQuery(`
   *[_type == "homepage"][0]{
     heroTitle,
     heroSubtitle,
+    carouselImages,
     storyTitle,
     storyHeading,
     storyContent,
