@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import React from "react";
 import Providers from "@/components/providers";
+import { SanityLive } from "@/sanity/lib/live";
 
 export const metadata: Metadata = {
     title: "Patriot Housing",
@@ -14,9 +15,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <body>
         <Providers>
             { children }
+            <SanityLive />
         </Providers>
         </body>
         </html>
     );
 }
-

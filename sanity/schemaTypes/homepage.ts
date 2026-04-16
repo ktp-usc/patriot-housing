@@ -43,5 +43,56 @@ export const homepage = defineType({
             title: 'Story Section Title',
             type: 'string',
         }),
+
+        defineField({
+            name: 'storyHeading',
+            title: 'Story Section Heading',
+            type: 'string',
+        }),
+
+        defineField({
+            name: 'storyContent',
+            title: 'Story Section Content',
+            type: 'array',
+            of: [{ type: 'block' }],
+        }),
+
+        defineField({
+            name: 'missionTitle',
+            title: 'Mission Section Title',
+            type: 'string',
+        }),
+
+        defineField({
+            name: 'missionHeading',
+            title: 'Mission Section Heading',
+            type: 'string',
+        }),
+
+        defineField({
+            name: 'missionContent',
+            title: 'Mission Section Content',
+            type: 'array',
+            of: [{ type: 'block' }],
+        }),
+
+        defineField({
+            name: 'contactText',
+            title: 'Contact Prompt',
+            type: 'string',
+        }),
+
+        defineField({
+            name: 'contactEmail',
+            title: 'Contact Email',
+            type: 'string',
+            validation: Rule => Rule.email(),
+        }),
+
+        defineField({
+            name: 'youtubeUrl',
+            title: 'YouTube Embed URL',
+            type: 'url',
+        }),
     ],
 })

@@ -1,10 +1,22 @@
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import { client } from "@/sanity/lib/client";
 import { VOLUNTEER_OPPORTUNITIES_QUERY } from "@/sanity/lib/queries";
+import { sanityFetch } from "@/sanity/lib/live";
+
+type VolunteerOpportunity = {
+    _id: string;
+    title?: string | null;
+    description?: string | null;
+    linkText?: string | null;
+    emailSubject?: string | null;
+    linkUrl?: string | null;
+};
 
 export default async function WaysToVolunteer() {
-    const opportunities = await client.fetch(VOLUNTEER_OPPORTUNITIES_QUERY);
+    const { data: opportunities } = await sanityFetch({
+        query: VOLUNTEER_OPPORTUNITIES_QUERY,
+        tags: ["volunteerOpportunity"],
+    });
     const opportunityEmail = "info@patriothousing.org";
 
     return (
@@ -25,15 +37,17 @@ export default async function WaysToVolunteer() {
                 </section>
 
                 <section className="mt-8 grid gap-6 md:grid-cols-3">
-                    {opportunities?.map((opportunity: any) => {
-                        const mailtoHref = `mailto:${opportunityEmail}?subject=${encodeURIComponent(opportunity.title)}`;
+                    {opportunities?.map((opportunity: VolunteerOpportunity) => {
+                        const emailSubject = opportunity.emailSubject || opportunity.title || "Volunteer Opportunity";
+                        const mailtoHref = `mailto:${opportunityEmail}?subject=${encodeURIComponent(emailSubject)}`;
+                        const href = opportunity.linkUrl?.trim() ? opportunity.linkUrl : mailtoHref;
 
                         return (
                             <div key={opportunity._id}
                                  className="rounded-xl border border-slate-200 bg-slate-50 p-6 space-y-2 items-center">
                                 <h2 className="text-red-800 font-bold">{opportunity.title}</h2>
                                 <p>{opportunity.description}</p>
-                                <a className="text-slate-900 underline" href={mailtoHref}>{opportunity.linkText}</a>
+                                <a className="text-slate-900 underline" href={href}>{opportunity.linkText}</a>
                             </div>
                         );
                     })}
