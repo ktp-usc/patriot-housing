@@ -7,6 +7,7 @@ import Carousel3 from "@/components/images/Carousel3.jpg";
 import Image from "next/image";
 import { client } from "@/sanity/lib/client";
 import { HOMEPAGE_QUERY } from "@/sanity/lib/queries";
+import { urlFor } from "@/sanity/lib/image";
 
 
 export default async function Home() {
@@ -95,36 +96,55 @@ export default async function Home() {
         <section className="rounded-2xl bg-slate-50 p-4 shadow-xl ring-1 ring-white/10 backdrop-blur sm:p-6 md:p-8">
           <Carousel className="group mx-auto w-full max-w-5xl">
             <CarouselContent>
-              <CarouselItem>
-                <div className="overflow-hidden rounded-2xl">
-                  <Image
-                    src={Carousel1}
-                    alt="Patriot Housing carousel image 1"
-                    className="block h-64 w-full object-cover sm:h-80 md:h-[28rem]"
-                    priority
-                  />
-                </div>
-              </CarouselItem>
+              {homepage?.carouselImages && homepage.carouselImages.length > 0 ? (
+                homepage.carouselImages.map((image: any, index: number) => (
+                  <CarouselItem key={index}>
+                    <div className="overflow-hidden rounded-2xl">
+                      <Image
+                        src={urlFor(image).url()}
+                        alt={image.alt || `Patriot Housing carousel image ${index + 1}`}
+                        className="block h-64 w-full object-cover sm:h-80 md:h-[28rem]"
+                        width={800}
+                        height={400}
+                        priority={index === 0}
+                      />
+                    </div>
+                  </CarouselItem>
+                ))
+              ) : (
+                <>
+                  <CarouselItem>
+                    <div className="overflow-hidden rounded-2xl">
+                      <Image
+                        src={Carousel1}
+                        alt="Patriot Housing carousel image 1"
+                        className="block h-64 w-full object-cover sm:h-80 md:h-[28rem]"
+                        priority
+                      />
+                    </div>
+                  </CarouselItem>
 
-              <CarouselItem>
-                <div className="overflow-hidden rounded-2xl">
-                  <Image
-                    src={Carousel2}
-                    alt="Patriot Housing carousel image 2"
-                    className="block h-64 w-full object-cover sm:h-80 md:h-[28rem]"
-                  />
-                </div>
-              </CarouselItem>
+                  <CarouselItem>
+                    <div className="overflow-hidden rounded-2xl">
+                      <Image
+                        src={Carousel2}
+                        alt="Patriot Housing carousel image 2"
+                        className="block h-64 w-full object-cover sm:h-80 md:h-[28rem]"
+                      />
+                    </div>
+                  </CarouselItem>
 
-              <CarouselItem>
-                <div className="overflow-hidden rounded-2xl">
-                  <Image
-                    src={Carousel3}
-                    alt="Patriot Housing carousel image 3"
-                    className="block h-64 w-full object-cover sm:h-80 md:h-[28rem]"
-                  />
-                </div>
-              </CarouselItem>
+                  <CarouselItem>
+                    <div className="overflow-hidden rounded-2xl">
+                      <Image
+                        src={Carousel3}
+                        alt="Patriot Housing carousel image 3"
+                        className="block h-64 w-full object-cover sm:h-80 md:h-[28rem]"
+                      />
+                    </div>
+                  </CarouselItem>
+                </>
+              )}
             </CarouselContent>
 
             <CarouselPrevious className="left-4 hidden size-12 border-white/0 bg-white/0 text-white/0 shadow-none transition-all duration-200 sm:flex sm:opacity-0 sm:group-hover:opacity-100 sm:group-hover:border-white/15 sm:group-hover:bg-slate-900/35 sm:group-hover:text-white/85 sm:focus-visible:opacity-100 sm:focus-visible:text-white hover:border-white/25 hover:bg-slate-900/65 hover:text-white focus-visible:border-white/25 focus-visible:bg-slate-900/65 [&_svg]:size-5" />
